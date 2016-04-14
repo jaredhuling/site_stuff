@@ -37,7 +37,7 @@ var ww = window,
 var wid = ww.innerWidth || e.clientWidth || g.clientWidth,
     heig = ww.innerHeight || e.clientHeight || g.clientHeight;
 
-var height = heig * 0.8 - padding 
+var height = heig * 0.8 - padding
 var width = wid * 0.7 - 2 * padding
 
 
@@ -78,12 +78,12 @@ var unscalex = d3.scale.linear()
 var unscaley = d3.scale.linear()
                           .range(ydomain)
                           .domain([height-2*padding, 2*padding]);
-                          
+
 var xAxis = d3.svg.axis()
                           .scale(scalex)
                           .orient("bottom")
 			  .ticks(5);
-                          
+
 var yAxis = d3.svg.axis()
                           .scale(scaley)
                           .orient("left")
@@ -98,10 +98,10 @@ vis.append("g")
 	.attr("y", 55)
         .attr("x", 335)
 	.attr("dx", ".71em")
-	
+
   .style("text-anchor", "center")
   .text("Beta Estimate");
-  
+
 vis.append("g")
         .attr("class", "y axis")
         .attr("transform", "translate(" + 3*padding + ",0)")
@@ -117,7 +117,7 @@ var legend = vis.append("g")
 	  .attr("class", "legend")
 	  .attr("height", 100)
 	  .attr("width", 100)
-    	  .attr('transform', 'translate(-150,30)') 
+    	  .attr('transform', 'translate(-150,30)')
 
 var betaTruth = vis.selectAll('path.median.x')
     .data([[[truth,ydomain[0]], [truth,ydomain[1]]]])
@@ -135,8 +135,8 @@ var betaTruth = vis.selectAll('path.median.x')
 
 var myDensityLines = [];
 
-d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
-  
+d3.csv("d3_viz/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
+
   estimators = d3.set(input.map(function(x) {return x.estimator})).values();
   values_corux = d3.set(input.map(function(x) {return x.EFFUX})).values();
   values_coruy = d3.set(input.map(function(x) {return x.EFFUY})).values();
@@ -145,7 +145,7 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
   coruy = d3.min(values_coruy);
   is = d3.min(values_is);
   is = 0.5;
-  
+
   data_filtered = input.filter(Compare(corux, 'EFFUX')).filter(Compare(corux, 'EFFUY')).filter(Compare(is, 'IS'));
   var real_corux = d3.round(_.toArray(data_filtered.filter(Compare(estimators[0], 'estimator'))[0])[1], 4);
   d3.select("#sliderCORUXtext").text(real_corux);
@@ -155,7 +155,7 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
   d3.select("#sliderCORIStext").text(real_coris);
   var kdes = [];
   var colours = ["#00CC00", "#6C91FF", "#D1E0E0", "#E60000"];
-  
+
   var line = d3.svg.line()
       .x(function(d) { return scalex(d[0]); })
       .y(function(d) { return scaley(d[1]); });
@@ -168,11 +168,11 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
       .attr("y", function(d, i){ return i *  30;})
 	  .attr("width", 15)
 	  .attr("height", 15)
-	  .style("fill", function(d) { 
+	  .style("fill", function(d) {
         	var color = colours[estimators.indexOf(d)];
         	return color;
       	  })
-      
+
    legend.selectAll('text')
       .data(estimators)
       .enter()
@@ -190,7 +190,7 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
       myDensityLines[g] = document.createElement('input');
 
       data = _.toArray(data_filtered.filter(Compare(estimators[g], 'estimator'))[0]).slice(7,507).map(Number);
-	  
+
       var x = d3.scale.linear().domain(xdomain).range([0, w]);
           y = d3.scale.linear().domain(ydomain).range([0, h]),
 
@@ -213,7 +213,7 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
 	      .on("mouseover", function(d) {
                         d3.select(this).style("stroke", "yellow");
                                         var mousepoz = d3.mouse(this);
-                                        
+
                                         d3.select("#tooltip")
                                           .style("left", mousepoz[0] + 65 + "px")
                                          .style("top", mousepoz[1] + 35 + "px")
@@ -222,8 +222,8 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
 
                                         //Show the tooltip
                                         d3.select("#tooltip").classed("hidden", false);
-                                        
-                                        
+
+
                 })
               .on("mouseout", function() {
 		d3.select(this).style("stroke", d3.select(this).attr("colorid"));
@@ -232,10 +232,10 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
                 });
 
 
-				
+
   }
 
-  
+
   d3.select("#sliderEFFUXtext").text(d3.min(values_corux));
   d3.select('#sliderCORUX')
         .call( d3.slider()
@@ -248,7 +248,7 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
                         .on("slide", function(evt, value) {
       				d3.select('#sliderEFFUXtext').text(Math.floor(100*value)/100);
 				corux = Math.floor(100*value)/100;
-  
+
   currcorux = corux;
   data_filtered = input.filter(Compare(corux, 'EFFUX')).filter(Compare(coruy, 'EFFUY')).filter(Compare(is, 'IS'));
   var real_corux = d3.round(_.toArray(data_filtered.filter(Compare(estimators[0], 'estimator'))[0])[1], 4);
@@ -263,7 +263,7 @@ d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
   for (var i=0; i<estimators.length; i++) {
 
 	  data = _.toArray(data_filtered.filter(Compare(estimators[i], 'estimator'))[0]).slice(7,507).map(Number);
-	  
+
 	  var x = d3.scale.linear().domain(xdomain).range([0, w]);
 	      y = d3.scale.linear().domain(ydomain).range([0, h]),
 
@@ -289,7 +289,7 @@ unscaley.range(ydomain);
   vis.select(".y.axis")
       .transition()
       .duration(750)
-      .call(yAxis); 
+      .call(yAxis);
 }))
 
   d3.select("#sliderEFFUYtext").text(d3.min(values_coruy));
@@ -304,7 +304,7 @@ unscaley.range(ydomain);
                         .on("slide", function(evt, value) {
       				d3.select('#sliderEFFUYtext').text(Math.floor(100*value)/100);
 				coruy = Math.floor(100*value)/100;
-  
+
   currcoruy = coruy;
   data_filtered = input.filter(Compare(corux, 'EFFUX')).filter(Compare(coruy, 'EFFUY')).filter(Compare(is, 'IS'));
   var real_corux = d3.round(_.toArray(data_filtered.filter(Compare(estimators[0], 'estimator'))[0])[1], 4);
@@ -319,7 +319,7 @@ unscaley.range(ydomain);
   for (var i=0; i<estimators.length; i++) {
 
 	  data = _.toArray(data_filtered.filter(Compare(estimators[i], 'estimator'))[0]).slice(7,507).map(Number);
-	  
+
 	  var x = d3.scale.linear().domain(xdomain).range([0, w]);
 	      y = d3.scale.linear().domain(ydomain).range([0, h]),
 
@@ -343,7 +343,7 @@ scaley.domain(ydomain);
 unscaley.range(ydomain);
   vis.select(".y.axis")
       .transition().duration(500)
-      .call(yAxis); 
+      .call(yAxis);
 }))
 
 
@@ -373,7 +373,7 @@ unscaley.range(ydomain);
   for (var i=0; i<estimators.length; i++) {
 
 	  data = _.toArray(data_filtered.filter(Compare(estimators[i], 'estimator'))[0]).slice(7,507).map(Number);
-	  
+
 	  var x = d3.scale.linear().domain(xdomain).range([0, w]);
 	      y = d3.scale.linear().domain(ydomain).range([0, h]),
 
@@ -400,16 +400,16 @@ unscaley.range(ydomain);
   vis.select(".y.axis")
       .transition()
       .duration(500)
-      .call(yAxis); 
+      .call(yAxis);
 }))
 //}) // end slider call
-	// add legend   
-   
-      
+	// add legend
+
+
      d3.select(window).on('resize.two', function() {
        width = ww.innerWidth || e.clientWidth || g.clientWidth;
        height = ww.innerHeight || e.clientHeight || g.clientHeight;
-       h = height * 0.8 - padding 
+       h = height * 0.8 - padding
        w = width * 0.65 - padding
 
 console.log(w);
@@ -427,7 +427,7 @@ console.log(h);
       unscaley.domain([h-2*padding, 2*padding]);
 
        vis.select('g.x.axis').attr("transform", "translate(0," + (h-padding) + ")")
-          .call(xAxis)	
+          .call(xAxis)
           .append("text")
 	   .attr("y", 55)
           .attr("x", 335)
@@ -455,7 +455,7 @@ legend = vis.append("g")
 	  .attr("class", "legend")
 	  .attr("height", (100 / 775) * h )
 	  .attr("width", (100 / 600) * w )
-    	  .attr('transform', 'translate(((350 / 775) * w),(350 / 600) * h)') 
+    	  .attr('transform', 'translate(((350 / 775) * w),(350 / 600) * h)')
 
 
 var betaTruth = vis.selectAll('path.median.x')
@@ -485,7 +485,7 @@ var betaTruth = vis.selectAll('path.median.x')
   //d3.select("#sliderCORIStext").text(real_coris);
   var kdes = [];
   var colours = ["#00CC00", "#6C91FF", "#D1E0E0", "#E60000"];
-  
+
   var line = d3.svg.line()
       .x(function(d) { return scalex(d[0]); })
       .y(function(d) { return scaley(d[1]); });
@@ -498,11 +498,11 @@ var betaTruth = vis.selectAll('path.median.x')
       .attr("y", function(d, i){ return scaley(-i * 0.75 + 10) - (12 / 600) * h;})
 	  .attr("width",  (15/775)*w )
 	  .attr("height", (15/775)*w )
-	  .style("fill", function(d) { 
+	  .style("fill", function(d) {
         	var color = colours[estimators.indexOf(d)];
         	return color;
       	  })
-      
+
    legend.selectAll('text')
       .data(estimators)
       .enter()
@@ -520,7 +520,7 @@ var betaTruth = vis.selectAll('path.median.x')
       myDensityLines[g] = document.createElement('input');
 
       data = _.toArray(data_filtered.filter(Compare(estimators[g], 'estimator'))[0]).slice(7,507).map(Number);
-	  
+
       var x = d3.scale.linear().domain(xdomain).range([0, w]);
           y = d3.scale.linear().domain(ydomain).range([0, h]),
 
@@ -543,7 +543,7 @@ var betaTruth = vis.selectAll('path.median.x')
 	      .on("mouseover", function(d) {
                         d3.select(this).style("stroke", "yellow");
                                         var mousepoz = d3.mouse(this);
-                                        
+
                                         d3.select("#tooltip")
                                           .style("left", mousepoz[0] + 65 + "px")
                                          .style("top", mousepoz[1] + 35 + "px")
@@ -552,8 +552,8 @@ var betaTruth = vis.selectAll('path.median.x')
 
                                         //Show the tooltip
                                         d3.select("#tooltip").classed("hidden", false);
-                                        
-                                        
+
+
                 })
               .on("mouseout", function() {
 		d3.select(this).style("stroke", d3.select(this).attr("colorid"));
@@ -562,17 +562,17 @@ var betaTruth = vis.selectAll('path.median.x')
                 });
 
 
-				
+
   }
 
-   
 
 
 
-    }); 
+
+    });
 
 
-  
+
 });
 
 
