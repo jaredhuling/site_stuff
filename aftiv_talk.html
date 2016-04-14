@@ -1,0 +1,2630 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=yes">
+
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" href="deck.js/core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="deck.js/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="deck.js/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="deck.js/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="deck.js/extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="deck.js/extensions/hash/deck.hash.css">
+  <link rel="stylesheet" media="screen" href="deck.js/extensions/scale/deck.scale.css">
+
+
+  <link rel="stylesheet" href="http://thematicmapping.org/playground/d3/d3.slider/d3.slider.css" />
+
+  <link rel="stylesheet" href="css/deckjs_dark_purple.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <!--<link id="transition-theme-link" rel="stylesheet" media="screen" href="deck.js/themes/transition/horizontal-slide.css">
+  -->
+
+  <style>
+
+   @import url(css/talk2016.css);
+   @import url(stacked_bars/static/css/animation.css);
+   @import url(stacked_bars/static/css/tipsy.css);
+
+  </style>
+
+  <!-- Required Modernizr file -->
+  <script src="deck.js/modernizr.custom.js"></script>
+
+
+<!-- <head> -->
+
+   <!-- Add jQuery -->
+  <script src="stacked_bars/static/lib/jquery-1.11.0.js"></script>
+
+
+  <!-- d3.js support -->
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+  <script type="text/javascript" src="densities/science/science.js/lib/d3/d3.layout.js"></script>
+  <script type="text/javascript" src="densities/science/science.js/science.v1.min.js"></script>
+  <script type="text/javascript" src="http://thematicmapping.org/playground/d3/d3.slider/d3.slider.js"></script>
+  <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+
+  <!-- <script src="stacked_bars/static/lib/handlebars-v1.3.0.js"></script> -->
+  <script src="stacked_bars/static/lib/handlebars-1.0.rc.1.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+  <script src="stacked_bars/static/lib/jquery.tipsy.js" type="text/javascript" charset="utf-8"></script>
+  <script src="stacked_bars/static/templates.js"></script>
+
+  <!-- MathJax support -->
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    config: ["MMLorHTML.js"],
+    jax: ["input/TeX","input/MathML","input/AsciiMath","output/HTML-CSS","output/NativeMML"],
+    extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js"],
+    displayAlign: "left",
+    TeX: {
+      extensions: ["AMSmath.js", "AMSfonts.js","AMSsymbols.js","noErrors.js","noUndefined.js","color.js"],
+      Macros: {
+        D: "{\\mathcal{D}}",
+        argmin: "{\\operatorname*{argmin}}",
+        argmax: "{\\operatorname*{argmax}}"
+    	}
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default.js"></script>
+
+<script>
+function resizeToMax(id){
+    myImage = new Image()
+    var img = document.getElementById(id);
+    myImage.src = img.src;
+    if(myImage.width > myImage.height){
+    	img.style.width = "100%";
+    } else {
+    	img.style.height = "100%";
+    }
+}
+</script>
+
+<script type="text/javascript" language="JavaScript">
+function set_body_height()
+{
+    var wh = $(window).height();
+    $('body').attr('style', 'height:' + wh + 'px;');
+}
+$(document).ready(function() {
+    set_body_height();
+    $(window).bind('resize', function() { set_body_height(); });
+});
+</script>
+
+<title>AFT-IV Presentation</title>
+</head>
+<body class="overview">
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<div class="deck-container">
+
+
+<section class="slide">
+    <br>
+<!--<h2 class="highlighttitle">Instrumental Variable Estimation in <br> Censored Regression</h2> -->
+
+<h2 class="highlighttitle">Endovascular vs. Open Surgery: <br> Analysis of Survival Outcomes Using <br> Instrumental Variables</h2>
+
+
+<p class="center" ><font class="greenhighlight">Jared Huling</font></p>
+<p class="center white" > With <font class="greenhighlight">Dr. Menggang Yu</font> </p>
+<p class="center white" > Collaboration with <font class="greenhighlight">Dr. James O'Malley</font>, Dartmouth </p>
+
+<p class="center white" >Biostatistics &amp; Medical Informatics <br> University of Wisconsin
+&ndash; Madison</p>
+
+<p class="centersmall"><code><a href="http://www.stat.wisc.edu/~huling"
+class="gray">www.stat.wisc.edu/~huling</a></code><br/>
+
+
+</section>
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+<!--
+<section class = "slide nobottomspace">
+<h3>Abdominal Aortic Aneurysm </h3>
+
+<ul class = "tight">
+  <li class = "lightblue">Dilation of large artery in abdominal cavity</li>
+      <ul class="tight lightblue">
+        <li>More common among elderly, especially men and smokers</li>
+        <li>Life-threatening, due to increased chance of aortic rupture</li>
+
+      </ul>
+  <br>
+  <li class = "lightblue">Standard Surgical Procedures</li>
+      <ul class="tight lightblue">
+	 <li>High mortality associated with surgical repair in rupture cases</li>
+        <li>Open Repair, <font class="greenhighlight"> conventional, more invasive, long recovery</font></li>
+        <li>Endovascular Repair<font class="greenhighlight">, more recent, less invasive</font></li>
+
+      </ul>
+
+</ul>
+
+</section>
+-->
+
+
+<section class = "slide nobottomspace">
+<h3>Abdominal Aortic Aneurysm </h3>
+
+<p >
+        <img class="img40" style="float:right" src="figures/AAA_diagram_2_transp.png" >
+
+        <ul class = "tight">
+          <li class = "lightblue">Dilation of large artery in abdominal cavity</li>
+              <ul class="tight lightblue">
+                <li>More common among elderly, especially men and smokers</li>
+                <li>Life-threatening, due to increased chance of aortic rupture</li>
+
+              </ul>
+          <br>
+          <li class = "lightblue">Standard Surgical Procedures</li>
+              <ul class="tight lightblue">
+        	 <li>High mortality associated with surgical repair in rupture cases</li>
+                <li>Open Repair, <font class="greenhighlight"> conventional, more invasive, long recovery</font></li>
+                <li>Endovascular Repair<font class="greenhighlight">, more recent, less invasive</font></li>
+
+              </ul>
+        </ul>
+</p>
+
+</section>
+
+
+
+<section class = "slide nobottomspace">
+<h3>Previous Analysis</h3>
+
+
+    <ul class = "tight">
+      <li class = "lightblue">Randomized Clinical Trials</li>
+          <ul class="tight">
+    	 <li>Suggest short term reduction in mortality for endo,<sup><a href="http://www.nejm.org/doi/full/10.1056/NEJMoa042002"><font class = "white"> 1</font></a></sup> little difference after 3 years<a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1207481"><font class = "white"> <sup>2</sup></font></a></li>
+          </ul>
+      <br>
+      <li class = "lightblue">Issues</li>
+          <ul class="tight lightblue">
+            <li>Short-term follow-up<a href="http://www.nejm.org/doi/full/10.1056/NEJMoa042002"><font class = "white"> <sup>1</sup></font></a></li>
+            <li>Small <font class="gray">One of the largest long-term controlled studies only had 10 AAA-related deaths<a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1207481"><font class = "white"> <sup>2</sup></font></a></font></li>
+          </ul>
+    </ul>
+
+<br><br><br>
+
+<ol class = "fn reallytight">
+
+<li>A Randomized Trial Comparing Conventional and Endovascular Repair of Abdominal Aortic Aneurysms
+, Prinssen et al., 2004. <cite>New England Journal of Medicine</cite>, volume 351, number 16, 2004, pp. 1607-1618</li>
+<li>Long-Term Comparison of Endovascular and Open Repair of Abdominal Aortic Aneurysm
+, Lederle et al., 2012. <cite>New England Journal of Medicine</cite>, volume 367, number 21, 2012, pp. 1988-1997</li>
+</ol>
+
+</section>
+
+<section class = "slide nobottomspace">
+
+<h3>Previous Analysis</h3>
+
+<p >
+        <img class="img40" style="float:right" src="figures/km_curves_endo.png" >
+
+        <ul class="tight">
+          <li class = "lightblue">Medicare Enrollment Data (observational)</li>
+              <ul class="tight lightblue">
+                <li>Lots of it &#8212; <font class="gray">128k patients with long-term follow-up</font></li>
+        	 <li>~44k deaths</li>
+              </ul>
+          <li class = "lightblue">Propensity-score-matched cohorts<!--<a href="http://www.nejm.org/doi/full/10.1056/NEJMoa0707348"><font class = "white"> <sup>1</sup></font></a>-->
+              <font class = "greenhighlight">(Schermerhorn et al., 2008)</font>
+          </li>
+              <ul class="tight lightblue">
+        	 <li>Potentially differential benefit for various subgroups</li>
+        	 <li>Suggests older patients benefit more from EVAR </li>
+        	 <li>Reinterventions more common after EVAR</li>
+              </ul>
+          <li class = "lightblue">Issues</li>
+              <ul class="tight lightblue">
+                <li>Many unmeasured factors determine type of repair performed</li>
+              </ul>
+        </ul>
+
+</p>
+
+<!--
+<ol class = "fn reallytight">
+<li>Endovascular vs. Open Repair of Abdominal Aortic Aneurysms in the Medicare Population
+, Schermerhorn et al., 2008. <cite>New England Journal of Medicine</cite>, volume 358, number 5, 2008, pp. 464-474</li>
+</ol>
+-->
+
+</section>
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables</h3>
+
+<p class="white indent">Can we estimate the causal effect of <font class = "greenhighlight">$X$</font> on <font class = "greenhighlight">$T$</font> without knowing <font class = "greenhighlight">$U$</font>? </p>
+
+<div style = "margin: 0px;" id = "contentcontainer">
+<!--<ul class="tight lightblue" id = "contentcontainer">-->
+  <img class="img50" src="figures/iv_assumptions.png" >
+
+<p class="white indent" id = "textalign">Consider the model $T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$.
+<br><br>
+so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font class = "greenhighlight">$E(X^T\epsilon) \neq 0$</font>
+</p>
+
+
+</div>
+
+<!--
+  <li>Assumptions</li>
+      <ul class="nodash"><li class="lightblue">True model: </li>
+	<li>$T = \beta X + U $</li>
+      </ul>
+      <ul class="nodash"><li class="lightblue">where </li>
+        <li>$Z\perp\!\!\!\perp U$</li>
+        <li>$T\perp\!\!\!\perp Z|X, U$</li>
+	<li>$X \not\!\perp\!\!\!\perp Z$</li>
+      </ul>
+
+
+
+
+</ul>
+</div>
+
+<ul class="tight">
+  <li>Estimator</li> <br>
+      <ul class="nodash">
+        <li class="offwhite"><font class="white">$\hat{\beta}_{IV} = (Z'X)^{-1}Z'T$</font> is consistent whereas
+	<font class="white">$\hat{\beta}_{OLS}$</font> is not</li>
+      </ul>
+  <li>Interpretation as Two-stage least squares</li> <br>
+      <ul class="nodash"><li class="offwhite">Equivalent to regressing <font class="white">$X$</font>
+ 	   on <font class="white">$Z$</font> and then <br> regressing <font class="white">$T$</font> on <font class="white">$\hat{X}$</font> from the first regression</li></ul>
+</ul>
+-->
+
+</section>
+
+
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables</h3>
+
+<p class="white indent">Can we estimate the causal effect of <font class = "greenhighlight">$X$</font> on <font class = "greenhighlight">$T$</font> without knowing <font class = "greenhighlight">$U$</font>? </p>
+
+<div style = "margin: 0px;" id = "contentcontainer">
+<!--<ul class="tight lightblue" id = "contentcontainer">-->
+  <img class="img50" src="figures/iv_assumptions.png" >
+
+<p class="white indent" id = "textalign">Consider the model $T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$.
+<br><br>
+so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font class = "glow">$E(X^T\epsilon) \neq 0$</font>
+</p>
+
+
+</div>
+
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables</h3>
+
+<ul class="nodash tight lighterblue">
+  <li class = "lightblue">Roughly speaking, we can write <br><br> <span class="equation">$Association(Z, T) = Association(Z, X) \times Association(X, T)$</span> <br><br> and solve for
+<font class = "white">$Association(X, T)$</font></li>
+      <ul class="tight lightblue">
+        <li >In the simple linear model, <font class = "white">$\hat{\beta}_{IV} = cov(T, Z) / cov(X, Z) \mbox{ is consistent for } \beta$</font></li>
+	 <li>(under some assumptions)</li>
+      </ul>
+</ul>
+
+<br>
+<ul class="tight lightblue nodash">
+  <li class = "lightblue">We can think of the instrument <font class = "white">$Z$</font> as an <font class="greenhighlight"> experimental handle</font> </li>
+      <ul class="tight lightblue">
+        <li>Considering <font class = "white">$X$</font> to be a treatment, when <font class = "white">$Z$</font> is changed, the treatment status is changed</li>
+        <li>Through and only through this change, the observed outcome <font class = "white">$T$</font> is changed</li>
+      </ul>
+      <br>
+</ul>
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+<!--
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables</h3>
+
+<ul class="nodash tight ">
+  <li class="lightblue">Example from Permut and Hebel (1989)</li>
+      <ul class="tight lightblue">
+        <li>
+            Interest in the effect of smoking of pregnant mother on child's birthweight
+        </li>
+	    <li>
+            The IV is the randomized encouragement of mothers to stop smoking
+        </li>
+	    <li>
+            Intent-to-Treat estimator: the effect on encouragement to quit smoking on child's birthweight
+        </li>
+	    <li>
+            However, we are interested in the effect of smoking on child's birthweight
+        </li>
+	    <li>
+            <font class = "lightblue">ITT estimator</font>: encouragement results in an average increase in birthweight of <font class = "white">98g</font>
+        </li>
+		Difference in fraction of those who quit smoking for those who were encouraged to quit vs <br> those who were not: <font class = "white">0.23</font>
+		<font class="lighterblue"> (effect of IV on treatment status) </font>		<br><br>
+	    <li>
+            <font class = "lightblue">IV estimator</font>: quitting smoking results in an average increase in birthweight of <br><br> <font class = "white">$98g/0.23 = 430g$</font><br><br>
+        </li>
+      </ul>
+</ul>
+
+
+
+</section>
+
+-->
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables in Linear Regression </h3>
+
+<!--
+<font class = "greenhighlight fontmedlarge">linear regression</font>
+<p class="white indent">Estimating causal effects from observational data: <font class = "greenhighlight">linear regression</font></h4>
+-->
+
+<br><br>
+<div style = "margin: 0px;" id = "contentcontainer">
+<ul class="tight lightblue" id = "contentcontainer">
+<img class="img45 floatright" src="figures/iv_assumptions.png" >
+
+    <div>
+      <li class = "lightblue">Assumptions</li>
+          <ul class="nodash"><li class="greenhighlight">model: </li>
+    	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$T = \beta X + U $</li>
+          </ul>
+          <ul class="nodash"><li class="greenhighlight">where </li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$Z\perp\!\!\!\perp U \mbox {  and  } X \not\!\perp\!\!\!\perp Z$</li>
+            <li>and &nbsp; $T\perp\!\!\!\perp Z|X, U$</li>
+          </ul>
+    </div>
+
+
+
+</ul>
+</div>
+
+<ul class="tight">
+
+</ul>
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables in Linear Regression </h3>
+
+<!--
+<font class = "greenhighlight fontmedlarge">linear regression</font>
+<p class="white indent">Estimating causal effects from observational data: <font class = "greenhighlight">linear regression</font></h4>
+-->
+<br><br>
+<div style = "margin: 0px;" id = "contentcontainer">
+<ul class="tight lightblue" id = "contentcontainer">
+<img class="img45 floatright" src="figures/iv_assumptions.png" >
+
+      <div>
+      <li class = "lightblue">
+          Estimator
+      </li>
+          <ul class="nodash">
+            <li>
+                <font class="white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\hat{\beta}_{IV}$ &nbsp; &nbsp;$ = (Z'X)^{-1}Z'T$</font> is consistent whereas
+    	<font class="white">$\hat{\beta}_{OLS} \mbox{ is not}$ </font>
+            </li>
+          </ul>
+
+
+
+          <ul class="nodash setbottom">
+              <li class = "lightblue">
+                  Interpretation as Two-stage least squares:
+              </li>
+              <li>
+                  <font class="white">$\hat{\beta}_{2SLS} = (\hat{X}'\hat{X})^{-1}\hat{X}'T \mbox{, where } \hat{X} = Z(Z'Z)^{-1}Z'X$ </font>
+                  is another consistent IV estimator
+              </li>
+              <li>
+                  &nbsp;&nbsp;&nbsp;&nbsp;Equivalent to regressing <font class="white">$X \mbox{ on } Z$</font> and then  regressing <font class="white">$T \mbox{ on } \hat{X}$</font> from the first regression
+              </li>
+          </ul>
+          <br><br>
+         <div>
+
+</ul>
+</div>
+
+
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables in Survival Analysis</h3>
+
+
+<ul class="nodash tight lightblue">
+  <li class = "lightblue">Challenges</li>
+      <ul class="tight lightblue">
+         <li>
+             Traditional IV methods require linearity <!--, yet the Cox proportional hazards model is nonlinear-->
+         </li>
+    	 <li>
+             Parametric models are often too restrictive for survival data in medical settings <!--, rendering most structural equation modelling approaches inappropriate-->
+         </li>
+    	 <li>
+             Methods that do not require linearity typically require other strong assumptions, <br><br> such as no measurement error for the endogenous variable $X$
+         </li>
+      </ul>
+  </li>
+</ul>
+
+<ul class="slide nodash tight lightblue">
+    <li class = "lightblue">Some assumptions must be made</li>
+        <ul class="tight lightblue">
+           <li>
+               In a completely nonparametric model, the causal effect cannot be identified
+           </li>
+        </ul>
+    </li>
+</ul>
+
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables in Survival Analysis</h3>
+
+<ul class="tight lightblue nodash">
+  <li class = "lightblue">
+      Existing work for IV methods for survival data
+  </li>
+      <ul class="tight lightblue">
+        <li>
+            Most work relies on fully specified parametric structural equation models: <br><font class = "greenhighlight">Tang and Lee (1998)</font>, <font class = "greenhighlight">Muthen and Masyn (2005)</font>, and <font class = "greenhighlight">Chen, et al (2011)</font>
+        </li>
+      </ul>
+	<ul class = "tight lightblue">
+		<li>
+            Two-stage residual inclusion <font class = "greenhighlight">(Terza et al., 2008)</font>
+			allows for consistent estimation for nonlinear parametric models with no censoring
+        </li>
+	</ul>
+	<ul class = "tight lightblue">
+		<li>
+            Recent has moved away from parametric outcome models, incorporating instrumental variable estimation in the Cox proportional hazards model <font class = "greenhighlight">(MacKenzie et al., 2014)</font> and the additive hazards model <font class = "greenhighlight">(Li et al., 2015; Tchetgen Tchetgen et al., 2015)</font>
+			which alleviates some of the restrictions of fully parametric approaches
+        </li>
+        <li>
+            However, they all impose a structural model for the confounding mechanism or parametric assumptions on the IV model
+        </li>
+	</ul>
+
+
+</ul>
+
+<br><br><br>
+<!--
+<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2494557/"><font class = "white"> <sup>1</sup></font></a>
+<ol class = "fn reallytight">
+<li>Two-stage Residual Inclusion Estimation: Addressing Endogeneity in Health Econometric Modeling,
+Joseph Terza, Anirban Basu, Paul Rathouz. <cite>J. Health Econ.</cite>, 27, 2008, pp. 531-543.</li>
+<li>Instrumental Variable Additive Hazards Models,
+ Jialiang Li, Jason Fine, Alan Brookhart. <cite>Biometrics</cite>, 71, 2015, pp. 122-130.</li>
+</ol>
+-->
+
+</section>
+
+
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables in Survival Analysis</h3>
+
+<ul class="tight lightblue nodash">
+  <li class = "lightblue">
+      Existing work for IV methods for survival data
+  </li>
+      <ul class="tight lightblue">
+        <li>
+            Most work relies on fully specified parametric structural equation models: <br><font class = "greenhighlight">Tang and Lee (1998)</font>, <font class = "greenhighlight">Muthen and Masyn (2005)</font>, and <font class = "greenhighlight">Chen, et al (2011)</font>
+        </li>
+      </ul>
+	<ul class = "tight lightblue">
+		<li>
+            Two-stage residual inclusion <font class = "greenhighlight">(Terza et al., 2008)</font>
+			allows for consistent estimation for nonlinear parametric models with no censoring
+        </li>
+	</ul>
+	<ul class = "tight lightblue">
+		<li>
+            Recent has moved away from parametric outcome models, incorporating instrumental variable estimation in the Cox proportional hazards model <font class = "glow greenhighlight">(MacKenzie et al., 2014)</font> and the additive hazards model <font class = "greenhighlight">(Li et al., 2015; Tchetgen Tchetgen et al., 2015)</font>
+			which alleviates some of the restrictions of fully parametric approaches
+        </li>
+        <li>
+            However, they all impose a structural model for the confounding mechanism or parametric assumptions on the IV model
+        </li>
+	</ul>
+
+
+</ul>
+
+<br><br><br>
+<!--
+<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2494557/"><font class = "white"> <sup>1</sup></font></a>
+<ol class = "fn reallytight">
+<li>Two-stage Residual Inclusion Estimation: Addressing Endogeneity in Health Econometric Modeling,
+Joseph Terza, Anirban Basu, Paul Rathouz. <cite>J. Health Econ.</cite>, 27, 2008, pp. 531-543.</li>
+<li>Instrumental Variable Additive Hazards Models,
+ Jialiang Li, Jason Fine, Alan Brookhart. <cite>Biometrics</cite>, 71, 2015, pp. 122-130.</li>
+</ol>
+-->
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<!--
+<section class = "slide nobottomspace">
+<h3>Instrumental Variables in Survival Analysis</h3>
+
+<ul class="tight lightblue nodash">
+  <li class = "lightblue">
+      Instrumental Variable Additive Hazards
+  </li>
+      <ul class="tight lightblue">
+        <li>
+            Model for the hazard function:
+<span class="equation">
+\begin{align*}
+h(t; X, X_o, U) &= h_0(t) + \beta X + \boldsymbol\beta_o'\mathbf{X_o} + \boldsymbol\beta_u' \mathbf{U} \\
+& \\
+X &= \alpha_c + \alpha_Z Z + \boldsymbol\alpha_o'\mathbf{X}_o + \boldsymbol\alpha_u'\mathbf{U} + \epsilon
+\end{align*}
+</span>
+	 </li>
+      </ul>
+      <ul class="tight lightblue">
+        <li> Fit linear model for $X$ on $Z$ and $\mathbf{X_o}$ and use $\hat{X}$ in additive hazards model</li>
+      </ul>
+      <ul class="tight lightblue">
+        <li> Requires linearity of the effect of the instrument on the endogenous variable $X$</li>
+      </ul>
+</ul>
+
+<ul class="tight lightblue nodash">
+  <li class = "lightblue">Two-stage Residual Inclusion</li>
+      <ul class="tight lightblue">
+        <li>
+            Requires the model for the endogenous variable to have no error
+        </li>
+    	<li>
+            Unclear if it applies with the occurrence of censoring
+        </li>
+      </ul>
+</ul>
+
+</section>
+
+-->
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3>Review: Accelerated Failure Time Model</h3>
+
+<!--
+<ul class="nodash tight lightblue">
+  <li class = "lighterblue">Why not Cox PH?</li><br>
+      <ul class="tight lightblue">
+        <li>Proportional hazards not reasonable for our data</li><br>
+	 <li><font class="greenhighlight">More importantly</font>, IV methods require linearity</li>
+      </ul>
+</ul>
+-->
+<br>
+<!--<ul class="tight lightblue nodash">
+  <li class = "nodash lightblue">Standard Semiparametric AFT Model</li><br>-->
+      <ul class="tight">
+        <li >
+            <font class="white">$\log \widetilde{T}_i = \beta X_i + \epsilon_i$, $i=1,\dots,n \mbox{ where }\epsilon_i$</font> come from a common, unspecified distribution and <font class="white">$\epsilon_i \perp\!\!\!\perp (X_i, C_i)$</font>
+
+      <br><br>
+	Let <font class="white">$C_i$</font> be the censoring time for subject <font class="white">$i$</font>, where <font class="white">$C_i \perp\!\!\!\perp \widetilde{T}_i | X_i$ </font>
+	<br><br> We observe <font class="white">$(T_i, \Delta_i, X_i), \mbox{ where } T_i = \widetilde{T}_i \wedge C_i \mbox{ and } \Delta_i = I(\widetilde{T}_i \leq C_i) $</font>
+
+	</ul></li> <br>
+      <ul class="tight lightblue">
+        <li>Nice interpretation: <font class="greenhighlight">$\log$ of the survival time is linear in the covariates</font> </li>
+      </ul>
+	<br>
+      <ul class="tight lightblue">
+        <li>Linearity provides opportunity for use of IVs </li>
+      </ul>
+
+<!--</ul>-->
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<section class = "slide nobottomspace">
+<h3>Review: AFT Model Estimation</h3>
+
+
+<p class="indent"><font class = "lightblue">Rank-based Estimation of </font><font class="white">$\beta$</font></h4>
+
+<span class="equation">
+\begin{align*}
+\Psi_n(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ X_i - \overline{X}(t, \beta) \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+& \\
+ \mbox{where } \overline{X}(t, \beta) &\equiv
+\frac{1}{n}\sum_{j=1}^n X_j I(\epsilon_i^\beta \ge t) \mbox{ } / \mbox{ } \frac{1}{n}\sum_{i=1}^n I(\epsilon_i^\beta \ge t) \mbox{  and} \\
+& \\
+\epsilon_i^\beta &= \log{T_i} - \beta X_i \mbox{ is the residual for subject }i \\
+\mbox{ and }
+N_i(t, \beta) &= I(\epsilon_i^\beta \leq t, \Delta_i = 1)
+\end{align*}
+</span>
+
+<p class="highlight indent"><font class="white">$\hat{\beta}$</font> is the zero crossing of <font class="white">$S_n(\beta)$</font>.
+Its asymptotic normality was proved by <font class="white">Tsiatis (1990)</font> and <font class="white">Ying (1993)</font></p>
+
+
+<!--
+I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{ \sum_{j=1}^nI(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}
+-->
+
+
+
+
+
+
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3>Review: AFT Model Estimation</h3>
+
+<p class="indent lightblue">Rank-based Estimation of <font class="white">$\beta$</font></h4>
+
+<span class="equation">
+\begin{align*}
+\Psi_n(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ X_i - \overline{X}(t, \beta) \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+&
+\end{align*}
+</span>
+
+<ul class="tight lightblue nodash">
+  <li class = "lightblue">Computational Challenges</li>
+      <ul class="tight">
+        <li>
+            <font class="white">$\Psi_n(\beta)$</font> is neither continuous nor monotone
+        </li>
+	 <li>
+         Continuous approximations to <font class="white">$\Psi_n(\beta)$</font>
+     </li>
+	 <li>
+         To ensure monotonicity, let <font class="white">$\rho(t, \beta) = \frac{1}{n}\sum_{j=1}^n I(\epsilon_j^\beta \ge t)$</font>
+     </li>
+      </ul>
+</ul>
+
+
+
+</section>
+
+
+
+
+<!-- ######################################################################################################################################## -->
+
+
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3>AFT Estimating Equation</h3>
+
+<!--
+<ul class="nodash tight lightblue">
+  <li class = "lighterblue">Why not Cox PH?</li><br>
+      <ul class="tight lightblue">
+        <li>Proportional hazards not reasonable for our data</li><br>
+	 <li><font class="greenhighlight">More importantly</font>, IV methods require linearity</li>
+      </ul>
+</ul>
+-->
+
+
+<!--<div style = "margin: 0px;" id = "contentcontainer">-->
+<!--<ul id = "contentcontainer">-->
+
+
+<img class="img70" src="figures/gehan_est_eqn_50.png" >
+
+
+<!--
+<div>
+   <table width="100%" height="100%" align="center" valign="center">
+
+   <tr><td>
+      <img class="img70" src="figures/est_eqns_saft.png" >
+   </td></tr>
+   </table>
+</div>
+-->
+
+
+
+<!--</ul>-->
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+
+
+
+
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<section class = "slide nobottomspace">
+<h3>Assumptions for IVs in the Accelerated Failure Time Model</h3>
+
+<p class="indent lightblue"> Assumptions for our methodology </p>
+
+<div style = "margin: 0px;" id = "contentcontainer">
+<ul class="tight lightblue" id = "contentcontainer">
+<img class="img45 floatright" src="figures/iv_assumptions.png" >
+
+
+      <ul class="nodash lightblue"><br>
+        <li>The underlying model is: <br><br><font class="white">$\log \widetilde{T}_i = \beta X_i + U_i$, <br> $i=1,\dots,n$</font>
+		<br>
+		<font class="white">
+
+            <br>
+      <ul class="nodash"><li class="lightblue">where </li>
+        <li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$Z_i\perp\!\!\!\perp U_i$
+        </li>
+        <li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\widetilde{T}_i\perp\!\!\!\perp Z_i|X_i, U_i$
+        </li>
+    	<li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$X_i \not\!\perp\!\!\!\perp Z_i$
+        </li>
+      </ul>
+     </font>
+
+      <li>
+          A key difference from standard AFT assumptions:
+      </li>
+        <li> <font class="white">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$C_i\perp\!\!\!\perp (X_i, Z_i, U_i, \widetilde{T}_i)$
+        </font>
+        </li>
+
+
+
+</ul>
+</div>
+
+
+
+</section>
+
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<section class = "slide nobottomspace">
+<h3>Methods for Unmeasured Confounders <font class="white">-</font> possible estimator of <font class="white">$\beta$</font></h3>
+
+<br>
+<p class="lightblue indent">In the spirit of IV, replace <font class="white">$X$</font> with ${\color{Yellow}Z}$</h4>
+
+<span class="equation">
+\begin{align*}
+\Psi_n^{IV}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+& \\
+ \mbox{where } {\color{Yellow}\overline{Z}(t, \beta)} &\equiv
+\frac{1}{n}\sum_{j=1}^n {\color{Yellow}Z_j} I(\epsilon_i^\beta \ge t) \mbox{ } / \mbox{ } \frac{1}{n}\sum_{i=1}^n I(\epsilon_i^\beta \ge t) \mbox{  and} \\
+& \\
+\epsilon_i^\beta &= \log{T_i} - \beta {\color{Yellow}X_i} \mbox{ is the residual for subject }i \mbox{ and }
+N_i(t, \beta) = I(\epsilon_i^\beta \leq t, \Delta_i = 1)
+\end{align*}
+</span>
+
+<p class="nobottomspace lightblue indent"> We compare ${\color{Yellow}Z_i} \mbox{ with } {\color{Yellow}\overline{Z}(t, \beta)}$,
+the mean IV value for those in the risk set for <font class="white">$i$</font> </p>
+
+<!--
+<span class="equation">
+\begin{align*}
+S_n^{IV}(\beta) = \sum_{i = 1}^n \rho(t, \beta)\left\{ {\color{Yellow}Z_j} - \frac{\sum_{j=1}^n {\color{Yellow}Z_j}I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{ \sum_{j=1}^nI(\log T_j - \beta X_j \ge \log T_i - \beta X_i)} \right\} \Delta_i
+\end{align*}
+</span>
+
+<p class="highlight indent">In the spirit of 2SLS, replace <font class="white">$X$</font> with <font class="white">${\color{Yellow}\hat{X}} = Z(Z'Z)^{-1}Z'X$</font></h4>
+
+<span class="equation">
+\begin{align*}
+U_n^{2SLS}(\beta) = \sum_{i = 1}^n \rho(t, \beta)\left\{ {\color{Yellow}\hat{X}_i} - \frac{\sum_{j=1}^n {\color{Yellow}\hat{X}_j}I(\log T_j - \beta {\color{Yellow}\hat{X}_j} \ge \log T_i - \beta {\color{Yellow}\hat{X}_i})}
+{ \sum_{j=1}^nI(\log T_j - \beta {\color{Yellow}\hat{X}_j} \ge \log T_i - \beta {\color{Yellow}\hat{X}_i})} \right\} \Delta_i
+\end{align*}
+</span>
+
+<p class="slide nobottomspace highlight indent"><font class="white"> Neither is consistent for $\beta$</font></h4>
+-->
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<section class = "slide nobottomspace">
+<h3>Methods for Unmeasured Confounders <font class="white">-</font> possible estimator of <font class="white">$\beta$</font></h3>
+
+
+<br><br>
+
+<p class="lightblue indent"><font class="greenhighlight">However</font>, in   </h4>
+
+
+
+<span class="equation">
+\begin{align*}
+\Psi_n^{IV}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+& \mbox{ } \\
+\epsilon_i^\beta &= \log{T_i} - \beta {\color{Yellow}X_i} \mbox{ depends on } {\color{Yellow} C_i}
+\end{align*}
+</span>
+
+<p class="nobottomspace lightblue indent"> and thus this estimator is not consistent for <font class="white">$\beta$</font></p>
+
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<section class = "slide nobottomspace">
+<h3>Methods for Unmeasured Confounders <font class="white">-</font> possible estimator of <font class="white">$\beta$</font></h3>
+
+
+<br>
+
+<!--
+<span class="equation">
+\begin{align*}
+U_n^{IV}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+& \\
+ \mbox{where } {\color{Yellow}\overline{Z}(t, \beta)} &\equiv
+\frac{1}{n}\sum_{j=1}^n {\color{Yellow}Z_j} I(\epsilon_i^\beta \ge t) / \frac{1}{n}\sum_{i=1}^n I(\epsilon_i^\beta \ge t) \mbox{  and} \\
+& \\
+\epsilon_i^\beta &= \log{T_i} - \beta {\color{Yellow}X_i} \mbox{ is the residual for subject }i \mbox{ and }
+N_i(t, \beta) = I(\epsilon_i^\beta \leq t, \Delta_i = 1)
+\end{align*}
+</span>
+
+<p class="nobottomspace highlight indent"> We compare ${\color{Yellow}Z_i}$ with ${\color{Yellow}\overline{Z}(t, \beta)}$,
+the mean IV value for those in the risk set for <font class="white">$i$</font> </p>
+
+-->
+
+
+<p class="lightblue indent">In the spirit of 2SLS, replace <font class="white">$X$</font> with <font class="white">${\color{Yellow}\hat{X}} = Z(Z'Z)^{-1}Z'X$</font></h4>
+
+<span class="equation">
+\begin{align*}
+\Psi_n^{2SLS}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}\hat{X}_i} - {\color{Yellow}{\tilde{X}}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+& \\
+ \mbox{where } {\color{Yellow}{\tilde{X}}(t, \beta)} &\equiv
+\frac{1}{n}\sum_{j=1}^n {\color{Yellow}\hat{X}_j} I({\color{Yellow}\hat{\epsilon}_i^\beta} \ge t) \mbox{ } / \mbox{ } \frac{1}{n}\sum_{i=1}^n I(  {\color{Yellow}\hat{\epsilon}_i^\beta} \ge t) \mbox{  and} \\
+& \\
+{\color{Yellow}\hat{\epsilon}_i^\beta} &= \log{T_i} - \beta {\color{Yellow}\hat{X}_i} \mbox{ is the residual for subject }i \mbox{ and }
+N_i(t, \beta) = I({\color{Yellow}\hat{\epsilon}_i^\beta} \leq t, \Delta_i = 1)
+\end{align*}
+</span>
+
+<!--
+U_n^{2SLS}(\beta) &= \sum_{i = 1}^n \rho(t, \beta)\left\{ {\color{Yellow}\hat{X}_i} - \frac{\sum_{j=1}^n {\color{Yellow}\hat{X}_j}I(\log T_j - \beta {\color{Yellow}\hat{X}_j} \ge \log T_i - \beta {\color{Yellow}\hat{X}_i})}
+{ \sum_{j=1}^nI(\log T_j - \beta {\color{Yellow}\hat{X}_j} \ge \log T_i - \beta {\color{Yellow}\hat{X}_i})} \right\} \Delta_i
+-->
+
+<p class="slide nobottomspace lightblue indent"> However this still imposes a linear model <br><br>
+assumption on the effect of the IV on <font class="white">$X$</font></h4>
+
+
+
+
+</section>
+
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+
+<section class = "slide nobottomspace">
+<h3>IV Estimation in the Accelerated Failure Time Model</h3>
+
+<br>
+
+<p class="lightblue indent">Replacing <font class="white">$X$</font> with <font class="white">$Z$</font> causes censoring to become non-ignorable</h4>
+
+
+<p class="lightblue indent">A natural method for handling this is inverse probability-of-censoring weighting</h4>
+
+<!--
+<span class="equation">
+\begin{equation}
+U_n(\beta ) = \sum_{i=1}^n \rho(t, \beta) \left\{ Z_i -
+\frac{\displaystyle \sum_{j=1}^n\frac{Z_j I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{G_C(\beta X_j + \log T_i - \beta X_i)}}
+{\displaystyle \sum_{j=1}^n\frac{I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{G_C(\beta X_j + \log T_i - \beta X_i)}}
+\right\} \frac{\Delta_i}{G_C(\log T_i)}
+\end{equation}
+</span>
+-->
+
+<span class="equation">
+\begin{align*}
+\Psi_n^{IV-IPCW}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}_{\hat{G}_C}(t, \beta)} \} \frac{\mathrm{d}N_i(t, \beta)}{\hat{G}_C(t + \beta X_i)} \\
+& \\
+ \mbox{where } {\color{Yellow}\overline{Z}_{\hat{G}_C}(t, \beta)} &\equiv
+\frac{1}{n}\sum_{j=1}^n \frac{{\color{Yellow}Z_j} I({\color{Yellow}\epsilon_i^\beta} \ge t)}{\hat{G}_C(t + \beta X_j)} \mbox{ } / \mbox{ }
+\frac{1}{n}\sum_{i=1}^n \frac{I(  {\color{Yellow}\epsilon_i^\beta} \ge t)}{\hat{G}_C(t + \beta X_j)} \mbox{  and} \\
+& \\
+{\color{Yellow}\epsilon_i^\beta} &= \log{T_i} - \beta {\color{Yellow}X_i} \mbox{ is the residual for subject }i \\
+\mbox{ and }
+N_i(t, \beta) &= I({\color{Yellow}\epsilon_i^\beta} \leq t, \Delta_i = 1)\\
+\mbox{and } \hat{G}_C & \mbox{ is the Kaplan-Meier estimator of } G_C\mbox{, the survival function of } C
+\end{align*}
+</span>
+
+
+</section>
+
+
+
+<!-- ######################################################################################################################################## -->
+
+
+
+
+
+<section class = "slide">
+<h3>Asymptotic Theory for IVs in the Accelerated Failure Time Model</h3>
+
+<ul class = "tight">
+<br>
+<span class="equationcenter" style="font-style: italic;font-size: 3.7vmin;"> <font style ="font-style: normal;font-size: 5vmin;" class = "lightblue"> Theorem 1 &nbsp;&nbsp;&nbsp;</font>
+Assume regularity conditions hold and ${\rho}_n(t, \beta)$ and $\overline{Z}_{\hat{G}_C}(t, \beta)$ in $\Psi_n^{IV-IPCW}(\beta)$ belong  to Glivenko-Cantelli classes. Then an approximate root $\hat{\beta}_n$ satisfying
+
+<br>
+    <span class="equationcenter" style="font-size: 4vmin;">
+    \begin{align*}
+    \Psi_n^{IV-IPCW}({\hat{\beta}_n}) = o_{p*}(1)
+    \end{align*}
+    </span>
+<br>
+
+is consistent. In particular when ${\rho}_{\hat{G}_C, n}(t,\beta) = \frac{1}{n}\sum_{i=1}^n \frac{I(  {\epsilon_i^\beta} \ge t)}{\hat{G}_C(t + \beta X_j)}$ for the Gehan type  of weight, the resulting estimator is consistent.
+</span>
+
+</ul>
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+
+
+<section class = "slide">
+<h3>Asymptotic Theory for IVs in the Accelerated Failure Time Model</h3>
+
+<ul class = "tight">
+<br>
+<span class="equationcenter" style="font-style: italic;font-size: 3.7vmin;"> <font style ="font-style: normal;font-size: 5vmin;" class = "lightblue"> Theorem 2 &nbsp;&nbsp;&nbsp;</font>
+    Denote $\hat{\gamma}_n = \hat{G}_C^{-1} \mbox{, } \gamma_0 = G_C^{-1}$ and let $\hat{\beta}_n$  be an approximate root satisfying
+
+<br>
+    <span class="equationcenter" style="font-size: 4vmin;">
+    \begin{align*}
+    \Psi_{\hat{\gamma}_n, n}^{IV-IPCW}(\hat{\beta}_n) = o_{p^*}(n^{-1/2}).
+    \end{align*}
+    </span>
+<br>
+
+    Then under the regularity conditions,  $n^{1/2}(\hat{\beta}_n - \beta_0)$ is asymptotically normal with the asymptotic representation
+
+<br>
+    <span class="equationcenter" style="font-size: 4vmin;">
+    \begin{align*}
+     n^{1/2}( \hat{\beta}_n - \beta_0 ) =  n^{1/2}( \widetilde{\beta}_n - \beta_0 ) - \{  \dot{\Psi}_\beta (\beta_0)  \}^{-1} \dot{\Psi}_{\gamma} ( n^{1/2} (\hat{\gamma}_n - \gamma_0)  )  + o_{p^*}(1)
+    \end{align*}
+    </span>
+
+    where $\widetilde{\beta}_n$  is an approximate root satisfying
+    <span class="equationcenter" style="font-size: 4vmin;">
+    \begin{align*}
+    \Psi_{\gamma_0, n}^{IV-IPCW}(\widetilde{\beta}_n) = o_{p^*}(n^{-1/2}).
+    \end{align*}
+    </span>
+</span>
+</ul>
+
+</section>
+
+
+
+<!-- ######################################################################################################################################## -->
+
+<section class = "slide nobottomspace">
+<h3>Computation for IVs in the Accelerated Failure Time Model</h3>
+
+
+<img class="img70" src="figures/iv_ipcw_est_eqn_250.png" >
+
+
+
+</section>
+
+<!--         #############        -->
+
+<section class = "slide nobottomspace">
+<h3>Computation for IVs in the Accelerated Failure Time Model</h3>
+
+
+<img class="img70" src="figures/iv_ipcw_est_eqn_1000.png" >
+
+
+
+</section>
+
+
+<!--      ##################      -->
+
+
+<section class = "slide nobottomspace">
+<h3>Computation for IVs in the Accelerated Failure Time Model</h3>
+
+
+<img class="img70" src="figures/iv_ipcw_est_eqn_3000.png" >
+
+
+</section>
+
+
+<!--      ##################      -->
+
+<section class = "slide nobottomspace">
+<h3>Computation for IVs in the Accelerated Failure Time Model</h3>
+
+<br>
+
+<ul class = "nodash lightblue">
+
+    <li class = "white">
+        Utilization of the $\texttt{R}$ package $\texttt{BB}$
+    </li>
+
+    <li class = "white">
+        $\texttt{BB}$ is a derivative-free method for solving nonlinear systems of equations
+
+        <br><br>
+        <ul class = "lightblue">
+            <li class = "white">
+                Works well for non-smooth systems of equations
+            </li>
+        </ul>
+    </li>
+
+    <li class = "white">
+        $\texttt{BB}$ doesn't always find the solution, so an adaptive restarting strategy is used, which makes solving more robust
+    </li>
+
+</ul>
+
+
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+
+<section class = "slide nobottomspace">
+<h3>Methods for Unmeasured Confounders <font class="white">-</font> Inference</h3>
+
+
+<ul class="nodash tight lightblue">
+  <li class="lightblue">
+      Full bootstrap: solve <font class="white">$n^{-1/2}\Psi_n^{IV-IPCW^*}(\beta)$</font> <font class="white">$\mbox{ }B$</font> times, where
+		<font class="white">$n^{-1/2}\Psi_n^{IV-IPCW^*}(\beta)$</font> <br> is the estimating equation based on resampled data
+    </li>
+      <ul class="slide tight lightblue">
+        <li>
+            However, due to the computational difficulties in solving <font class="white">$n^{-1/2}\Psi_n^{IV-IPCW}(\beta)$</font>, <br>this is impractical
+        </li>
+    	<li>
+            Instead, if we can relate the variance of <font class="white">$n^{-1/2}\Psi_n^{IV-IPCW}(\beta)$</font> to the variance of <br>
+    		<font class="white">$n^{1/2}(\hat{\beta} - \beta_0)$</font>, a greatly less computationally demanding procedure can be developed
+        </li>
+      </ul>
+</ul>
+
+<br>
+<ul class="slide nodash tight lightblue">
+  <li class="lightblue">
+      This motivates the use of resampling strategies from <font class="greenhighlight">Zeng and Lin (2008)</font>
+  </li>
+      <ul class="tight lightblue">
+        <li>
+            Instead of solving estimating equations, involves evaluating perturbed equations
+        </li>
+    	<li>
+            Can accomodate nonsmooth estimating equations/functions
+        </li>
+      </ul>
+</ul>
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+
+<section class = "slide nobottomspace">
+<h3>Standard AFT <font class="white">-</font> Inference</h3>
+
+<ul class="nodash tight lightblue">
+  <li class="lighterblue">
+      For the standard AFT model, under some regularity conditions <font class="white">(Parzen et al. 1994, Zeng and Lin 2008)</font>:
+  </li>
+    <ul class="tight lightblue">
+        <li class = "lightblue">
+            Uniformly in a neighborhood of <font class="white">$\beta_0$, <br><br>
+		              $n^{-1/2}\Psi_n(\beta) = n^{-1/2}\sum_{i=1}^n S_i(\beta_0) + A n^{1/2}(\beta - \beta_0) + o_p(1+n^{1/2}||\beta - \beta_0||)$ </font> <br>
+		                    where <font class="white"> $A$ </font> is the asymptotic slope of <font class="white"> $\frac{1}{n}\Psi_n(\beta_0)$</font>
+        </li>
+    	<li class = "lightblue">
+             Hence, <font class="white">$n^{1/2}(\hat{\beta} - \beta_0)$</font> is asymptotically norm with variance
+    		<font class="white">$\Sigma = A^{-1}V(A^{-1})^T$</font>, where <font class="white">$V = \lim_{n \to \infty}\frac{1}{n}\sum_{i=1}^nS_i S_i^T$ </font>
+        </li>
+    	<li class = "lightblue">
+             <font class="greenhighlight">Zeng and Lin (2008)</font> proposed to estimate <font class="white">$A$</font> by regressing the following perturbation
+    			<font class="white">$n^{-1/2}\Psi_n(\hat{\beta} + n^{-1/2}Z_b),\mbox{ }Z_b \sim N(0,1)$</font> on  <font class="white">$Z_b, b=1,\dots,B$</font> and to estimate
+    				<font class="white">$V$</font> by taking the sample variance of <font class="white">$B$</font> resampled equations
+    				<font class="white">$n^{-1/2}\Psi_n^{*}(\hat{\beta})$</font>
+         </li>
+    </ul>
+</ul>
+
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+<!--
+
+<section class = "slide nobottomspace">
+<h3>Standard AFT <font class="white">-</font> Inference</h3>
+
+<ul class="nodash tight lightblue">
+  <li class="lightblue">
+      <font class="greenhighlight">Zeng and Lin's</font> justification estimates for <font class="white">$A$</font> and <font class="white">$V$</font>:
+  </li>
+      <ul class="tight lightblue">
+
+
+	 <li class = "lightblue"><font class="greenhighlight">Recall:</font> Estimate <font class="white">$A$</font> by regressing the following perturbation <br>
+			<font class="white">$n^{-1/2}\Psi_n(\hat{\beta} + n^{-1/2}Z_b)$</font> on  <font class="white">$Z_b, b=1,\dots,B$</font> and to estimate
+				<font class="white">$V$</font> by taking the sample variance <br> of <font class="white">$B$</font> resampled equations
+				<font class="white">$n^{-1/2}\Psi_n^{*}(\hat{\beta})$</font> </li>
+
+	 <li class = "lightblue"><font class="white">
+         <span style = "font-size: 0.92em">
+         $$
+         n^{-1/2}\Psi_n^{*}(\hat{\beta}) = {}   n^{-1/2}\Psi_n^{*}(\hat{\beta}) - n^{-1/2}\Psi_n(\hat{\beta})
+         = {}  ^{-1/2}\sum_{i=1}^n(M_i - 1)S_i(\beta_0) + o_p(1+n^{1/2}||\hat{\beta} - \beta_0||)
+         $$
+        </span>
+        </font> where
+			<font class="white"> $M_i$ </font> is the number of times the <font class="white"> $ith$</font> observation appears in the bootstrap sample </li> <br>
+
+	 <li style = "font-size: 0.92em" class = "lightblue"><font class="white">$ n^{-1/2}\Psi_n(\hat{\beta} + n^{-1/2}Z) = n^{-1/2}\Psi_n(\hat{\beta} + n^{-1/2}Z) - n^{-1/2}\Psi_n(\hat{\beta})$ <br>
+		$\mbox{ }= An^{1/2}(\hat{\beta} + n^{-1/2}Z - \hat{\beta}) + o_p(1)= AZ + o_p(1)$</font> </li>
+      </ul>
+</ul>
+
+
+
+</section>
+
+-->
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+
+<section class = "slide nobottomspace">
+<h3>AFT-IV-IPCW <font class="white">-</font> Inference</h3>
+
+
+<ul class="nodash tight lightblue">
+  <li class="lightblue">From Theorem 2 we have</li>
+
+<span class="equation">
+\begin{align*}
+n^{-1/2}\Psi_n^{IV-IPCW}(\beta) = {} &  \dot{\Psi}_{\gamma} ( n^{1/2} (\hat{\gamma}_n - \gamma_0)  ) + n^{-1/2}\sum_{i=1}^nS_i(\beta_0) \\
+ &{} +
+		An^{1/2}(\beta - \beta_0) + o_p(1 + n^{1/2}||\beta - \beta_0 ||) \\
+\end{align*}
+</span>
+
+  <li class="slide lightblue">And hence the bootstrap method applies</li>
+
+</ul>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3 class = "medmargin" >Simulation &nbsp; <font class = "white fontmed"> $T = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font>
+<font class = "fontmed">  where </font>
+<font class = "white fontmed"> $X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</font> <font class = "fontmed">  and  </font>
+<font class = "white fontmed"> $\epsilon$, $\epsilon^* \sim N(0,1)$, $\epsilon \perp\!\!\!\perp \epsilon^*$ </font> </h3>
+
+<!--
+<span class="equation">
+\begin{equation}
+U_n(\beta ) = \sum_{i=1}^n
+\end{equation}
+</span>
+-->
+
+    <div id="tooltip" class="hidden">
+            <p><span id="value">100</span></p>
+    </div>
+    <!--<div id="wrap"> -->
+<div class = "nopadnomarginleftright">
+
+<div id="kde" class = "leftspan nopadnomarginleftright"></div>
+
+    <div class="rightdrop"> <!--id="right_col" -->
+	<div class="wrapper">
+	<br>
+	<font class = "white fontmed">
+	  $\alpha_U = $  <span id="sliderEFFUXtext"></span> <br><br>
+	  $Cor(U,X)=$ <span id="sliderCORUXtext"></span>
+	  <div id="sliderCORUX"></div>
+	</font>
+	</div>
+
+	<div class="wrapper">
+	<br>
+	<font class = "white fontmed">
+	  $\beta_U = $  <span id="sliderEFFUYtext"></span> <br><br>
+	  $Cor(U,{T})=$ <span id="sliderCORUYtext"></span>
+	  <div id="sliderCORUY"></div>
+	</font>
+	</div>
+
+	<div class="wrapper">
+	<br>
+	<font class = "white fontmed">
+	  $\alpha_Z = $  <span id="sliderIStext"></span> <br><br>
+	  $Cor(Z,X)=$ <span id="sliderCORIStext"></span>
+	  <div id="sliderIS"></div>
+	</font>
+	</div>
+
+    </div>
+
+
+
+</div>
+
+
+<script type="text/javascript" src="densities/kdepresent_exp.js"></script>
+</section>
+
+<!-- ######################################################################################################################################## -->
+
+
+<section class = "slide nobottomspace">
+<h3>Simulation <font class="white">-</font> Coverage</h3>
+
+
+<img class="img65" src="figures/coverage_plot_sim.png" >
+
+
+</section>
+
+<!-- #################################   ZOOMED VERSION   ######################################## -->
+
+<section class = "slide nobottomspace">
+<h3>Simulation <font class="white">-</font> Coverage</h3>
+
+
+<img class="img65" src="figures/coverage_plot_sim_zoom.png" >
+
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+
+
+<!--  I really don't need the table
+
+
+
+<section class = "slide nobottomspace">
+<h3>Simulation <font class="white">-</font> Coverage</h3>
+
+<br>
+
+<ul class="nodash centersm">
+
+    <table class='gmisc_table' style='border-collapse: collapse;' >
+    <thead>
+    <tr>
+    <th colspan='3' style='font-weight: 900; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'></th><th style='border-top: 2px solid grey;; border-bottom: hidden;'>&nbsp;</th>
+    <th colspan='4' style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'>N=500</th><th style='border-top: 2px solid grey;; border-bottom: hidden;'>&nbsp;</th>
+    <th colspan='4' style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'>n=5000</th>
+    </tr>
+    <tr>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\alpha_U$</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\beta_U$</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\alpha_Z$</th>
+    <th style='border-bottom: 1px solid grey;' colspan='1'>&nbsp;</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IV</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-2SLS</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IPCW</th>
+    <th style='border-bottom: 1px solid grey;' colspan='1'>&nbsp;</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IV</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-2SLS</th>
+    <th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IPCW</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td colspan='13' style='font-weight: 900; text-align: left;'></td></tr>
+    <tr>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.5</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.542</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.848</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.902</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.928</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.874</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.296</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.970</td>
+    </tr>
+    <tr style='background-color: #1f172d;'>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.5</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.146</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.798</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.938</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.910</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.858</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.638</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.960</td>
+    </tr>
+    <tr>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.5</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.100</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.838</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.912</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.924</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.852</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.544</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.938</td>
+    </tr>
+    <tr style='background-color: #1f172d;'>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.5</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.002</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.826</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.964</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.920</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.774</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.808</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.948</td>
+    </tr>
+    <tr><td colspan='13' style='font-weight: 900; text-align: left; border-top: 1px solid #BEBEBE;'></td></tr>
+    <tr>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.742</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.844</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.762</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.936</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.026</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.920</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.012</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.970</td>
+    </tr>
+    <tr style='background-color: #1f172d;'>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.406</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.840</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.808</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.924</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.866</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.050</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.968</td>
+    </tr>
+    <tr>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.422</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.880</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.842</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.906</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.888</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.086</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.966</td>
+    </tr>
+    <tr style='background-color: #1f172d;'>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.054</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.856</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.872</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.906</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.786</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.184</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.938</td>
+    </tr>
+    <tr><td colspan='13' style='font-weight: 900; text-align: left; border-top: 1px solid #BEBEBE;'></td></tr>
+    <tr>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.5</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.820</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.870</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.684</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.930</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.174</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.928</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.002</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.958</td>
+    </tr>
+    <tr style='background-color: #1f172d;'>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.5</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.584</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.882</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.738</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.948</td>
+    <td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.002</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.866</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.004</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.954</td>
+    </tr>
+    <tr>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.5</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.5</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.632</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.898</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.780</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.906</td>
+    <td style='' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.890</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.032</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.952</td>
+    </tr>
+    <tr style='background-color: #1f172d;'>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>1</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: right;'>1.5</td>
+    <td style='background-color: #1f172d; border-bottom: 2px solid grey;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.196</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.862</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.828</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: right;'>0.928</td>
+    <td style='background-color: #1f172d; border-bottom: 2px solid grey;' colspan='1'>&nbsp;</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.000</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.880</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.060</td>
+    <td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.938</td>
+    </tr>
+    </tbody>
+    </table>
+
+    <br>
+    <span class = "equationcenter">
+    <font class = "white fontmed"> $\log{T} = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font>
+    <font class = "fontmed"> &nbsp;  where </font>
+    <font class = "white fontmed"> $X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</font> <font class = "fontmed"> &nbsp;  and  </font> <br>
+    <font class = "white fontmed"> $\epsilon$, $\epsilon^* \sim N(0,1)$, $\epsilon \perp\!\!\!\perp \epsilon^*$ </font>
+    <br> <br>
+     <font class = "white fontmed"> Sample size $= 500$, $150$ replications, $200$ bootstrap samples  </font>
+    </span>
+
+</ul>
+
+</section>
+
+
+-->
+
+
+
+
+<!-- ######################      BIAS RESULTS FOR THOSE WHO LIKE TABLES       ##################### -->
+
+<!--
+
+<section class = "slide nobottomspace">
+<h3>Simulation <font class="white">-</font> Bias</h3>
+
+<ul class="nodash centersm">
+
+<table class='gmisc_table' style='border-collapse: collapse;' >
+<thead>
+<tr>
+<th colspan='3' style='font-weight: 900; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'></th><th style='border-top: 2px solid grey;; border-bottom: hidden;'>&nbsp;</th>
+<th colspan='4' style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'>n=500</th><th style='border-top: 2px solid grey;; border-bottom: hidden;'>&nbsp;</th>
+<th colspan='4' style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'>n=5000</th>
+</tr>
+<tr>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\alpha_U$</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\beta_U$</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\alpha_I$</th>
+<th style='border-bottom: 1px solid grey;' colspan='1'>&nbsp;</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IV</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-2SLS</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IPCW</th>
+<th style='border-bottom: 1px solid grey;' colspan='1'>&nbsp;</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IV</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-2SLS</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IPCW</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan='13' style='font-weight: 900; text-align: left;'></td></tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.231</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.983</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.798</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.033</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.235</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.970</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.798</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.007</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.368</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.965</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.829</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.008</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.362</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.939</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.821</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.989</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.465</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.964</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.829</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.017</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.466</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.947</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.821</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.997</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.726</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.926</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.853</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.991</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.722</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.914</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.851</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.977</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.680</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.941</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.843</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.001</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.685</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.941</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.849</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.996</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>2.090</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.919</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.877</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.984</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>2.078</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.907</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.876</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.963</td>
+</tr>
+<tr><td colspan='13' style='font-weight: 900; text-align: left; border-top: 1px solid #BEBEBE;'></td></tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.255</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.990</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.748</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.036</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.238</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.975</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.741</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.003</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.384</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.962</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.761</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.004</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.383</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.954</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.760</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.994</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.463</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.969</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.775</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.006</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.466</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.958</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.768</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.003</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.774</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.938</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.793</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.995</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.765</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.934</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.792</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.979</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.673</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.962</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.804</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.028</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.663</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.949</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.797</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.998</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>2.129</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.919</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.817</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.983</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>2.122</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.920</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.816</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.975</td>
+</tr>
+<tr><td colspan='13' style='font-weight: 900; text-align: left; border-top: 1px solid #BEBEBE;'></td></tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.221</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.728</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.038</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.213</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.981</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.724</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.003</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.386</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.989</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.744</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.038</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.373</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.968</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.738</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.991</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.416</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.984</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.759</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.028</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.409</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.970</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.752</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.003</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.738</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.954</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.769</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.014</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.731</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.947</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.767</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.993</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.595</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.974</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.785</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.059</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.581</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.967</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.785</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.015</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='background-color: #1f172d; border-bottom: 2px solid grey;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>2.063</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.948</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.804</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: right;'>1.010</td>
+<td style='background-color: #1f172d; border-bottom: 2px solid grey;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>2.065</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.936</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.793</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.981</td>
+</tr>
+</tbody>
+</table>
+
+<br>
+<span class = "equationcenter">
+<font class = "white fontmed"> $\log{T} = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font>
+<font class = "fontmed"> &nbsp;  where </font>
+<font class = "white fontmed"> $X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</font> <font class = "fontmed"> &nbsp;  and  </font>
+<font class = "white fontmed"> $\epsilon$, $\epsilon^* \sim N(0,1)$, $\epsilon \perp\!\!\!\perp \epsilon^*$ </font>
+<br> <br>
+ <font class = "white fontmed">$1000$ replications  </font>
+</span>
+
+</ul>
+
+
+</section>
+
+-->
+
+
+<!--
+<ul class="nodash tight lighterblue">
+  <li class="lighterblue"></li>
+
+
+<span class="equationsmall">
+\begin{array}{rrr|rrrr|rrrr}
+\multicolumn{3}{c}{Sim Parameters} & \multicolumn{4}{c}{Estimate} \multicolumn{4}{c}{Emp. Coverage} \\
+ \alpha_U & \beta_U & \alpha_I & AFT & AFT-IV & AFT-2SLS & AFT-IPCW & AFT & AFT-IV & AFT-2SLS & AFT-IPCW \\
+ 1.000 & 0.000 & 0.500 & 1.010 & 1.047 & 0.814 & 1.062 & 0.970 & 0.945 & 0.965 & 0.980 \\
+  1.000 & 0.500 & 0.500 & 1.369 & 0.949 & 0.828 & 0.998 & 0.145 & 0.930 & 0.990 & 0.960 \\
+  1.000 & 1.000 & 0.500 & 1.737 & 0.918 & 0.847 & 0.977 & 0.000 & 0.950 & 1.000 & 0.940 \\
+  1.000 & 1.500 & 0.500 & 2.068 & 0.916 & 0.881 & 0.974 & 0.000 & 0.930 & 0.995 & 0.895 \\
+   \hline
+1.000 & 0.000 & 1.000 & 0.986 & 0.979 & 0.719 & 1.032 & 0.975 & 0.930 & 0.755 & 0.980 \\
+  1.000 & 0.500 & 1.000 & 1.395 & 1.003 & 0.787 & 1.076 & 0.370 & 0.945 & 0.905 & 0.975 \\
+  1.000 & 1.000 & 1.000 & 1.742 & 0.907 & 0.773 & 0.941 & 0.020 & 0.940 & 0.970 & 0.980 \\
+  1.000 & 1.500 & 1.000 & 2.110 & 0.903 & 0.803 & 0.988 & 0.000 & 0.925 & 0.980 & 0.940 \\
+   \hline
+1.000 & 0.000 & 1.500 & 0.983 & 0.976 & 0.699 & 1.022 & 0.985 & 0.930 & 0.635 & 0.990 \\
+  1.000 & 0.500 & 1.500 & 1.351 & 0.938 & 0.718 & 0.969 & 0.710 & 0.915 & 0.725 & 0.985 \\
+  1.000 & 1.000 & 1.500 & 1.709 & 0.924 & 0.751 & 0.962 & 0.210 & 0.940 & 0.895 & 0.975 \\
+  1.000 & 1.500 & 1.500 & 2.038 & 0.921 & 0.785 & 0.982 & 0.035 & 0.945 & 0.975 & 0.950 \\
+  \end{array}
+</span>
+
+
+
+</ul>
+-->
+
+
+<!-- ######################      COVERAGE RESULTS FOR THOSE WHO LIKE TABLES       ##################### -->
+
+
+<!--
+
+<section class = "slide nobottomspace">
+<h3>Simulation <font class="white">-</font> Coverage</h3>
+
+
+<ul class="nodash center">
+
+
+
+<table class='gmisc_table' style='border-collapse: collapse;' >
+<thead>
+<tr>
+<th colspan='3' style='font-weight: 900; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'></th><th style='border-top: 2px solid grey;; border-bottom: hidden;'>&nbsp;</th>
+<th colspan='4' style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'>Estimate</th><th style='border-top: 2px solid grey;; border-bottom: hidden;'>&nbsp;</th>
+<th colspan='4' style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center; font-size: 3.5vmin; font-family: helvetica,sans-serif;padding-left: .7em; padding-right: .7em; margin-left:0.7em;'>Emp. Coverage</th>
+</tr>
+<tr>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\alpha_U$</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\beta_U$</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>$\alpha_I$</th>
+<th style='border-bottom: 1px solid grey;' colspan='1'>&nbsp;</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IV</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-2SLS</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IPCW</th>
+<th style='border-bottom: 1px solid grey;' colspan='1'>&nbsp;</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IV</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-2SLS</th>
+<th style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-bottom: 1px solid grey; text-align: center;'>AFT-IPCW</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan='13' style='font-weight: 900; text-align: left;'></td></tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.018</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.040</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.825</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.091</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.973</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.973</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.980</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.967</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.369</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.023</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.884</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.070</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.107</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.960</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.993</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.980</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.734</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.963</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.884</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.028</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.933</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.993</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.960</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>2.074</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.926</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.889</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>0.986</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.947</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.993</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.907</td>
+</tr>
+<tr><td colspan='13' style='font-weight: 900; text-align: left; border-top: 1px solid #BEBEBE;'></td></tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.997</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.032</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.754</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.076</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.980</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.960</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.840</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.993</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.381</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.972</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.773</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.036</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.433</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.940</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.900</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.980</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.784</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.966</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.823</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.047</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.007</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.947</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.973</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.973</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.000</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>2.114</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.940</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.836</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.003</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.933</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.993</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.960</td>
+</tr>
+<tr><td colspan='13' style='font-weight: 900; text-align: left; border-top: 1px solid #BEBEBE;'></td></tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.005</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.030</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.730</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.093</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.987</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.960</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.733</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.980</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>1.368</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.976</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.744</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-right: 1px solid black; text-align: right;'>1.025</td>
+<td style='background-color: #1f172d;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.667</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.947</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.807</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; text-align: right;'>0.980</td>
+</tr>
+<tr>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>1.739</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.962</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.781</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; border-right: 1px solid black; text-align: right;'>1.024</td>
+<td style='' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.120</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.947</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.907</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; text-align: right;'>0.980</td>
+</tr>
+<tr style='background-color: #1f172d;'>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>1.000</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>1.500</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: right;'>1.500</td>
+<td style='background-color: #1f172d; border-bottom: 2px solid grey;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>2.070</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.959</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.815</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; border-right: 1px solid black; text-align: right;'>0.992</td>
+<td style='background-color: #1f172d; border-bottom: 2px solid grey;' colspan='1'>&nbsp;</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.020</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.953</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.980</td>
+<td style='font-size: 2.5vmin; font-family: helvetica,sans-serif; padding-left: .5em; padding-right: .2em; background-color: #1f172d; border-bottom: 2px solid grey; text-align: right;'>0.960</td>
+</tr>
+</tbody>
+</table>
+
+<br>
+<span class = "equationcenter">
+<font class = "white fontmed"> $\log{T} = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font>
+<font class = "fontmed"> &nbsp;  where </font>
+<font class = "white fontmed"> $X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</font> <font class = "fontmed"> &nbsp;  and  </font>
+<font class = "white fontmed"> $\epsilon$, $\epsilon^* \sim N(0,1)$, $\epsilon \perp\!\!\!\perp \epsilon^*$ </font>
+<br> <br>
+ <font class = "white fontmed"> Sample size $= 500$, $150$ replications, $200$ bootstrap samples  </font>
+</span>
+
+</ul>
+
+
+</section>
+
+-->
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3>Preliminary Analysis</h3>
+
+
+<ul class="tight">
+  <li>
+      Data
+  </li>
+       <ul class="lightblue">
+         <li>
+             Rupture cases (<font class = "white">2853</font> patients)
+         </li>
+         <li>
+             <font class = "white">~66%</font> censoring
+         </li>
+    	 <li>
+             <font class = "white">9</font> years of follow-up
+         </li>
+         <li>
+             <font class = "white">962</font> deaths, <font class = "white">733</font> of which were related to endo repair
+         </li>
+    	 <li>
+             <font class = "white">Instrument:</font> the proportion of endovascular AAA surgeries by institution in the past 365 days
+         </li>
+    	 <li>
+             Standard methods to determine instrument strength support the use of this as an instrument
+         </li>
+       </ul>
+
+  <li>Methods</li>
+       <ul class="lightblue">
+         <li>
+             Standard AFT model, AFT model with IV replacement, AFT-2SLS
+         </li>
+         <li>
+             Bootstrap for confidence intervals
+         </li>
+    	 <li>
+             Due to time considerations AFT model with IV and inverse weighting was not used
+         </li>
+       </ul>
+
+</ul>
+</section>
+
+
+
+<!-- ######################################################################################################################################## -->
+
+<section class = "slide nobottomspace">
+<h3>Kaplan-Meier Curves for All Patients</h3>
+
+
+<img class="img70" src="figures/km_curves_endo_wide.png" >
+
+
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+
+<section class = "slide nobottomspace">
+<h3>Kaplan-Meier Curves for Rupture Cases</h3>
+
+
+<img class="img70" src="figures/km_curves_endo_rupture_wide.png" >
+
+
+
+</section>
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+<section class = "slide nobottomspace">
+<h3>Preliminary Analysis</h3>
+
+<br>
+
+<h4 class="lightblue" style = "text-align:center;">Estimate of the effect of endovascular repair (EVAR) <br> on log survival time <br>
+<font style="font-size: 26px;">accounting for prior conditions, demographic variables, and others</font> </h4>
+
+<br>
+
+
+<p style = "text-align:center;">
+	<font class = "white">
+        <!--
+	$
+	\begin{array}{c|rrr}
+	{{\;} \\ \text{Estimator}} & {2.5\% \\ \text{Lower CI}} & {{\;}\\ \text{Mean}} &  {97.5\% \\ \text{Upper CI}} \\
+	\hline
+	\text{AFT} & -0.0627 & 0.0465 & 0.1436 \\
+	\text{AFT-IV} & -0.4199 & -0.1693 & 0.0801 \\
+	\text{AFT-2SLS} & -0.4316 & -0.1752 & 0.0743 \\
+    \text{AFT-IV-IPCW}  & -0.156 &  -0.364 & 0.052 \\
+	\end{array}
+	$
+-->
+    $
+    \begin{array}{c|rrl}
+    {\text{Estimator}} & {\hat{\boldsymbol\beta}_{EVAR}} & {(95\% \text{ Conf.}} & {\text{Interval})}  \\
+    \hline
+    \text{AFT} & 0.047 & (-0.063, & 0.144) \\
+    \text{AFT-IV} & -0.169 & (-0.420, & 0.080) \\
+    \text{AFT-2SLS} & -0.175 & (-0.432, & 0.074) \\
+    \text{AFT-IV-IPCW}  & -0.156 &  (-0.364, & 0.052) \\
+    \end{array}
+    $
+	</font>
+</p>
+
+
+</section>
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+
+
+<section class = "slide nobottomspace">
+<h3>Conclusions</h3>
+
+
+<ul class="tight">
+  <li class = "lightblue">
+      AAA Rupture Data
+  </li>
+      <br>
+	<ul>
+	  <li>
+          Standard AFT model (no IV adjustment) suggests slight benefit from endo
+      </li>
+	  <li>
+          AFT-IV / 2SLS models suggest potential benefit from open surgery
+      </li>
+      <li>
+          Interactions between the surgery type and patient characteristics
+      </li>
+	</ul>
+
+  <li class="lightblue">
+      Estimators
+  </li><br>
+	<ul >
+	  <li>Standard AFT model exhibits clear bias in the presence of confounding
+	  <li>AFT-IV is not consistent, but in practice is much better than AFT
+	  <li>IPCW provides a theoretically sound IV method
+	</ul>
+
+</ul>
+<br>
+
+
+
+</section>
+
+<!--
+
+<section class = "slide nobottomspace">
+<h3 class = "medmargin" > Smooth Approximation to $\Psi_n^{IV-IPCW}$</font> </h3>
+
+-->
+
+<!--
+<p id="loading">[Loading...]</p>
+-->
+
+<!--
+       <div class="page">
+                 <div class = "center">
+        <div class = "topdiv">sample size <div id="drop" /></div><br><br>
+
+                 <div class = "bottomdiv">
+                    <div class="wrapper">
+                    <br>
+
+                        h: h*<span class="sliderprop", id="sliderBandVal"></span><br><br>
+                            <span class="sliderprop", id="sliderBand"></span>
+                   </div>
+
+                 </div>
+                 </div>
+        <div id="lines" class = "center"></div>
+    </div>
+
+<div id="tooltip" class="hidden">
+        <p><span id="value">100</span></p>
+</div>
+<div id="wrap">
+
+
+</div>
+<script type="text/javascript" src="est_eqn.js"></script>
+
+</section>
+
+-->
+
+
+
+<!-- ######################################################################################################################################## -->
+<!-- ######################################################################################################################################## -->
+
+
+  <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+    <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status"> <font class = "white">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span></font>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <!--<form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form> -->
+
+    <!-- deck.hash snippet -->
+    <!-- <a href="." title="Permalink to this slide" class="deck-permalink">#</a> -->
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="deck.js/jquery.min.js"></script>
+<script src="deck.js/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js/extensions/hash/deck.hash.js"></script>
+<script src="deck.js/extensions/menu/deck.menu.js"></script>
+<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<script src="deck.js/extensions/status/deck.status.js"></script>
+<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+    $.deck('enableScale');
+    $.deck.defaults = {
+      touch: {
+        uswipeTolerance: 60,
+        swipeDirection: horizontal
+      }
+    };
+  });perma
+</script>
+
+
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49091606-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
