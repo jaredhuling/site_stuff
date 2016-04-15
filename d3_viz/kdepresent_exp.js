@@ -135,7 +135,7 @@ var betaTruth = vis.selectAll('path.median.x')
 
 var myDensityLines = [];
 
-d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
+d3.csv("d3_viz/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
 
   estimators = d3.set(input.map(function(x) {return x.estimator})).values();
   values_corux = d3.set(input.map(function(x) {return x.EFFUX})).values();
