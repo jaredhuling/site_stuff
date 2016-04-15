@@ -42,7 +42,7 @@
 <!-- <head> -->
 
    <!-- Add jQuery -->
-  <script src="stacked_bars/static/lib/jquery-1.11.0.js"></script>
+  <script src="static/lib/jquery-1.11.0.js"></script>
 
 
   <!-- d3.js support -->
@@ -53,7 +53,7 @@
   <script type="text/javascript" src="http://thematicmapping.org/playground/d3/d3.slider/d3.slider.js"></script>
   <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
 
-  <!-- <script src="stacked_bars/static/lib/handlebars-v1.3.0.js"></script> -->
+  <!-- <script src="static/lib/handlebars-v1.3.0.js"></script> -->
   <script src="static/lib/handlebars-1.0.rc.1.js"></script>
   <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
@@ -133,8 +133,8 @@ $(document).ready(function() {
 
 
 <p class="center" ><font class="greenhighlight">Jared Huling</font></p>
-<p class="center white" > With <font class="greenhighlight">Dr. Menggang Yu</font> </p>
-<p class="center white" > Collaboration with <font class="greenhighlight">Dr. James O'Malley</font>, Dartmouth </p>
+<p class="center white" > Joint work with <font class="greenhighlight">Dr. Menggang Yu</font> </p>
+<p class="center white" > and <font class="greenhighlight">Dr. James O'Malley</font>, Dartmouth </p>
 
 <p class="center white" >Biostatistics &amp; Medical Informatics <br> University of Wisconsin
 &ndash; Madison</p>
@@ -179,10 +179,35 @@ class="gray">www.stat.wisc.edu/~huling</a></code><br/>
 
 
 <section class = "slide nobottomspace">
+<h3> Causal Inference In Observational Studies</h3>
+
+
+    <ul class = "tight">
+      <li class = "lightblue">Randomized Clinical Trials</li>
+          <ul class="tight">
+    	         <li>Gold standard for causal inference</li>
+          </ul>
+      <br>
+      <li class = "lightblue">Drawbacks</li>
+          <ul class="tight lightblue">
+            <li>Costly</li>
+            <li>Impractical</li>
+            <li>Often narrow in scope</li>
+          </ul>
+      <li class = "lightblue">Need for causal inference from observational studies</li>
+    </ul>
+
+
+
+
+</section>
+
+
+<section class = "slide nobottomspace">
 <h3>Abdominal Aortic Aneurysm </h3>
 
 <p >
-        <img class="img40" style="float:right" src="figures/AAA_diagram_2_transp.png" >
+        <img class="img40" style="float:right; padding-left:1em;" src="figures/AAA_diagram_2_transp.png" >
 
         <ul class = "tight">
           <li class = "lightblue">Dilation of large artery in abdominal cavity</li>
@@ -213,16 +238,17 @@ class="gray">www.stat.wisc.edu/~huling</a></code><br/>
     <ul class = "tight">
       <li class = "lightblue">Randomized Clinical Trials</li>
           <ul class="tight">
-    	 <li>Suggest short term reduction in mortality for endo,<sup><a href="http://www.nejm.org/doi/full/10.1056/NEJMoa042002"><font class = "white"> 1</font></a></sup> little difference after 3 years<a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1207481"><font class = "white"> <sup>2</sup></font></a></li>
+    	 <li>Suggest short term reduction in mortality for endo <font class = "greenhighlight">(Prinssen et al., 2004)</font>, little difference after 3 years <font class = "greenhighlight">(Lederle et al., 2012)</font></li>
           </ul>
       <br>
       <li class = "lightblue">Issues</li>
           <ul class="tight lightblue">
-            <li>Short-term follow-up<a href="http://www.nejm.org/doi/full/10.1056/NEJMoa042002"><font class = "white"> <sup>1</sup></font></a></li>
-            <li>Small <font class="gray">One of the largest long-term controlled studies only had 10 AAA-related deaths<a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1207481"><font class = "white"> <sup>2</sup></font></a></font></li>
+            <li>Short-term follow-up <font class = "greenhighlight">(Prinssen et al., 2004)</font></li>
+            <li>Small One of the largest long-term controlled studies only had 10 AAA-related deaths <font class = "greenhighlight">(Lederle et al., 2012)</font> </li>
           </ul>
     </ul>
 
+<!--
 <br><br><br>
 
 <ol class = "fn reallytight">
@@ -232,6 +258,8 @@ class="gray">www.stat.wisc.edu/~huling</a></code><br/>
 <li>Long-Term Comparison of Endovascular and Open Repair of Abdominal Aortic Aneurysm
 , Lederle et al., 2012. <cite>New England Journal of Medicine</cite>, volume 367, number 21, 2012, pp. 1988-1997</li>
 </ol>
+
+-->
 
 </section>
 
@@ -285,15 +313,15 @@ class="gray">www.stat.wisc.edu/~huling</a></code><br/>
 <section class = "slide nobottomspace">
 <h3>Instrumental Variables</h3>
 
-<p class="white indent">Can we estimate the causal effect of <font class = "greenhighlight">$X$</font> on <font class = "greenhighlight">$T$</font> without knowing <font class = "greenhighlight">$U$</font>? </p>
+<p class="white indent">Can we estimate the causal effect of <span class = "number"><font class = "greenhighlight">$X$</font></span> on <span class = "number"><font class = "greenhighlight">$T$</font><span> without knowing <span class = "number"><font class = "greenhighlight">$U$</font></span>? </p>
 
 <div style = "margin: 0px;" id = "contentcontainer">
 <!--<ul class="tight lightblue" id = "contentcontainer">-->
   <img class="img50" src="figures/iv_assumptions.png" >
 
-<p class="white indent" id = "textalign">Consider the model $T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$.
+<p class="white indent" id = "textalign">Consider the model <span class = "number">$T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$</span>.
 <br><br>
-so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font class = "greenhighlight">$E(X^T\epsilon) \neq 0$</font>
+so <span class = "number">$\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^TU$</span> is biased because <span class = "number"><font class = "greenhighlight">$E(X^TU) \neq 0$</font></span>
 </p>
 
 
@@ -335,15 +363,15 @@ so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font 
 <section class = "slide nobottomspace">
 <h3>Instrumental Variables</h3>
 
-<p class="white indent">Can we estimate the causal effect of <font class = "greenhighlight">$X$</font> on <font class = "greenhighlight">$T$</font> without knowing <font class = "greenhighlight">$U$</font>? </p>
+<p class="white indent">Can we estimate the causal effect of <span class = "number"><font class = "greenhighlight">$X$</font></span> on <span class = "number"><font class = "greenhighlight">$T$</font><span> without knowing <span class = "number"><font class = "greenhighlight">$U$</font></span>? </p>
 
 <div style = "margin: 0px;" id = "contentcontainer">
 <!--<ul class="tight lightblue" id = "contentcontainer">-->
   <img class="img50" src="figures/iv_assumptions.png" >
 
-<p class="white indent" id = "textalign">Consider the model $T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$.
+<p class="white indent" id = "textalign">Consider the model <span class = "number">$T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$</span>.
 <br><br>
-so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font class = "glow">$E(X^T\epsilon) \neq 0$</font>
+so <span class = "number">$\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^TU$</span> is biased because <span class = "number"><font class = "glow">$E(X^TU) \neq 0$</font></span>
 </p>
 
 
@@ -364,17 +392,17 @@ so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font 
   <li class = "lightblue">Roughly speaking, we can write <br><br> <span class="equation">$Association(Z, T) = Association(Z, X) \times Association(X, T)$</span> <br><br> and solve for
 <font class = "white">$Association(X, T)$</font></li>
       <ul class="tight lightblue">
-        <li >In the simple linear model, <font class = "white">$\hat{\beta}_{IV} = cov(T, Z) / cov(X, Z) \mbox{ is consistent for } \beta$</font></li>
+        <li >In the simple linear model, <span class = "number"><font class = "white">$\hat{\beta}_{IV} = cov(T, Z) / cov(X, Z) \mbox{ is consistent for } \beta$</font></span></li>
 	 <li>(under some assumptions)</li>
       </ul>
 </ul>
 
 <br>
 <ul class="tight lightblue nodash">
-  <li class = "lightblue">We can think of the instrument <font class = "white">$Z$</font> as an <font class="greenhighlight"> experimental handle</font> </li>
+  <li class = "lightblue">We can think of the instrument <span class = "number"><font class = "white">$Z$</font></span> as an <font class="greenhighlight"> experimental handle</font> </li>
       <ul class="tight lightblue">
-        <li>Considering <font class = "white">$X$</font> to be a treatment, when <font class = "white">$Z$</font> is changed, the treatment status is changed</li>
-        <li>Through and only through this change, the observed outcome <font class = "white">$T$</font> is changed</li>
+        <li>Considering <span class = "number"><font class = "white">$X$</font></span> to be a treatment, when <span class = "number"><font class = "white">$Z$</font></span> is changed, the treatment status is changed</li>
+        <li>Through and only through this change, the observed outcome <span class = "number"><font class = "white">$T$</font></span> is changed</li>
       </ul>
       <br>
 </ul>
@@ -441,11 +469,11 @@ so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font 
     <div>
       <li class = "lightblue">Assumptions</li>
           <ul class="nodash"><li class="greenhighlight">model: </li>
-    	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$T = \beta X + U $</li>
+    	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class = "number">$T = \beta X + U $</span></li>
           </ul>
           <ul class="nodash"><li class="greenhighlight">where </li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$Z\perp\!\!\!\perp U \mbox {  and  } X \not\!\perp\!\!\!\perp Z$</li>
-            <li>and &nbsp; $T\perp\!\!\!\perp Z|X, U$</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class = "number">$Z\perp\!\!\!\perp U \mbox {  and  } X \not\!\perp\!\!\!\perp Z$</span></li>
+            <li>and &nbsp; <span class = "number">$T\perp\!\!\!\perp Z|X, U$</span></li>
           </ul>
     </div>
 
@@ -481,8 +509,8 @@ so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font 
       </li>
           <ul class="nodash">
             <li>
-                <font class="white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\hat{\beta}_{IV}$ &nbsp; &nbsp;$ = (Z'X)^{-1}Z'T$</font> is consistent whereas
-    	<font class="white">$\hat{\beta}_{OLS} \mbox{ is not}$ </font>
+                <font class="white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class = "number">$\hat{\beta}_{IV} = (Z'X)^{-1}Z'T$</span></font> is consistent whereas
+    	<font class="white"><span class = "number">$\hat{\beta}_{OLS} \mbox{ is not}$</span> </font>
             </li>
           </ul>
 
@@ -493,11 +521,11 @@ so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font 
                   Interpretation as Two-stage least squares:
               </li>
               <li>
-                  <font class="white">$\hat{\beta}_{2SLS} = (\hat{X}'\hat{X})^{-1}\hat{X}'T \mbox{, where } \hat{X} = Z(Z'Z)^{-1}Z'X$ </font>
+                  <font class="white"><span class = "number">$\hat{\beta}_{2SLS} = (\hat{X}'\hat{X})^{-1}\hat{X}'T \mbox{, where } \hat{X} = Z(Z'Z)^{-1}Z'X$</span> </font>
                   is another consistent IV estimator
               </li>
               <li>
-                  &nbsp;&nbsp;&nbsp;&nbsp;Equivalent to regressing <font class="white">$X \mbox{ on } Z$</font> and then  regressing <font class="white">$T \mbox{ on } \hat{X}$</font> from the first regression
+                  &nbsp;&nbsp;&nbsp;&nbsp;Equivalent to regressing <font class="white"><span class = "number">$X \mbox{ on } Z$</span></font> and then  regressing <font class="white"><span class = "number">$T \mbox{ on } \hat{X}$</span></font> from the first regression
               </li>
           </ul>
           <br><br>
@@ -530,7 +558,7 @@ so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font 
              Parametric models are often too restrictive for survival data in medical settings <!--, rendering most structural equation modelling approaches inappropriate-->
          </li>
     	 <li>
-             Methods that do not require linearity typically require other strong assumptions, <br><br> such as no measurement error for the endogenous variable $X$
+             Methods that do not require linearity typically require other strong assumptions, <br><br> such as no measurement error for the endogenous variable <span class = "number">$X$</span>
          </li>
       </ul>
   </li>
@@ -579,11 +607,13 @@ so $\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^T\epsilon$ is biased because <font 
             Recent has moved away from parametric outcome models, incorporating instrumental variable estimation in the Cox proportional hazards model <font class = "greenhighlight">(MacKenzie et al., 2014)</font> and the additive hazards model <font class = "greenhighlight">(Li et al., 2015; Tchetgen Tchetgen et al., 2015)</font>
 			which alleviates some of the restrictions of fully parametric approaches
         </li>
-        <li>
-            However, they all impose a structural model for the confounding mechanism or parametric assumptions on the IV model
-        </li>
+
 	</ul>
 
+
+    <li>
+        However, they all impose a structural model for the confounding mechanism or parametric assumptions on the IV model
+    </li>
 
 </ul>
 
@@ -624,10 +654,12 @@ Joseph Terza, Anirban Basu, Paul Rathouz. <cite>J. Health Econ.</cite>, 27, 2008
             Recent has moved away from parametric outcome models, incorporating instrumental variable estimation in the Cox proportional hazards model <font class = "glow greenhighlight">(MacKenzie et al., 2014)</font> and the additive hazards model <font class = "greenhighlight">(Li et al., 2015; Tchetgen Tchetgen et al., 2015)</font>
 			which alleviates some of the restrictions of fully parametric approaches
         </li>
-        <li>
-            However, they all impose a structural model for the confounding mechanism or parametric assumptions on the IV model
-        </li>
+
 	</ul>
+
+    <li>
+        However, they all impose a structural model for the confounding mechanism or parametric assumptions on the IV model
+    </li>
 
 
 </ul>
@@ -715,15 +747,15 @@ X &= \alpha_c + \alpha_Z Z + \boldsymbol\alpha_o'\mathbf{X}_o + \boldsymbol\alph
   <li class = "nodash lightblue">Standard Semiparametric AFT Model</li><br>-->
       <ul class="tight">
         <li >
-            <font class="white">$\log \widetilde{T}_i = \beta X_i + \epsilon_i$, $i=1,\dots,n \mbox{ where }\epsilon_i$</font> come from a common, unspecified distribution and <font class="white">$\epsilon_i \perp\!\!\!\perp (X_i, C_i)$</font>
+            <font class="white"><span class = "number">$\log \widetilde{T}_i = \beta X_i + \epsilon_i$, $i=1,\dots,n \mbox{ where }\epsilon_i$</span></font> come from a common, unspecified distribution and <font class="white"><span class = "number">$\epsilon_i \perp\!\!\!\perp (X_i, C_i)$</span></font>
 
       <br><br>
-	Let <font class="white">$C_i$</font> be the censoring time for subject <font class="white">$i$</font>, where <font class="white">$C_i \perp\!\!\!\perp \widetilde{T}_i | X_i$ </font>
-	<br><br> We observe <font class="white">$(T_i, \Delta_i, X_i), \mbox{ where } T_i = \widetilde{T}_i \wedge C_i \mbox{ and } \Delta_i = I(\widetilde{T}_i \leq C_i) $</font>
+	Let <font class="white"><span class = "number">$C_i$</span></font> be the censoring time for subject <font class="white"><span class = "number">$i$</span></font>, where <font class="white"><span class = "number">$C_i \perp\!\!\!\perp \widetilde{T}_i | X_i$ </span></font>
+	<br><br> We observe <span class = "number"><font class="white">$(T_i, \Delta_i, X_i), \mbox{ where } T_i = \widetilde{T}_i \wedge C_i \mbox{ and } \Delta_i = I(\widetilde{T}_i \leq C_i) $</font></span>
 
 	</ul></li> <br>
       <ul class="tight lightblue">
-        <li>Nice interpretation: <font class="greenhighlight">$\log$ of the survival time is linear in the covariates</font> </li>
+        <li>Nice interpretation: <font class="greenhighlight"><span class = "number">$\log$</span> of the survival time is linear in the covariates</font> </li>
       </ul>
 	<br>
       <ul class="tight lightblue">
@@ -752,20 +784,20 @@ X &= \alpha_c + \alpha_Z Z + \boldsymbol\alpha_o'\mathbf{X}_o + \boldsymbol\alph
 
 <p class="indent"><font class = "lightblue">Rank-based Estimation of </font><font class="white">$\beta$</font></h4>
 
-<span class="equation">
+<span class="equation number">
 \begin{align*}
-\Psi_n(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ X_i - \overline{X}(t, \beta) \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+\Psi_n(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ X_i - \overline{X}(t, \beta) \} \mbox{ } \mathrm{d}N_i(t; \beta) \\
 & \\
  \mbox{where } \overline{X}(t, \beta) &\equiv
 \frac{1}{n}\sum_{j=1}^n X_j I(\epsilon_i^\beta \ge t) \mbox{ } / \mbox{ } \frac{1}{n}\sum_{i=1}^n I(\epsilon_i^\beta \ge t) \mbox{  and} \\
 & \\
 \epsilon_i^\beta &= \log{T_i} - \beta X_i \mbox{ is the residual for subject }i \\
 \mbox{ and }
-N_i(t, \beta) &= I(\epsilon_i^\beta \leq t, \Delta_i = 1)
+N_i(t; \beta) &= I(\epsilon_i^\beta \leq t, \Delta_i = 1)
 \end{align*}
 </span>
 
-<p class="highlight indent"><font class="white">$\hat{\beta}$</font> is the zero crossing of <font class="white">$S_n(\beta)$</font>.
+<p class="highlight indent"><font class="white"><span class = "number">$\hat{\beta}$</span></font> is the zero crossing of <font class="white"><span class = "number">$S_n(\beta)$</span></font>.
 Its asymptotic normality was proved by <font class="white">Tsiatis (1990)</font> and <font class="white">Ying (1993)</font></p>
 
 
@@ -790,11 +822,11 @@ I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{ \sum_{j=1}^nI(\log T_j - \bet
 <section class = "slide nobottomspace">
 <h3>Review: AFT Model Estimation</h3>
 
-<p class="indent lightblue">Rank-based Estimation of <font class="white">$\beta$</font></h4>
+<p class="indent lightblue">Rank-based Estimation of <font class="white"><span class = "number">$\beta$</span></font></h4>
 
-<span class="equation">
+<span class="equation number">
 \begin{align*}
-\Psi_n(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ X_i - \overline{X}(t, \beta) \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+\Psi_n(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ X_i - \overline{X}(t, \beta) \} \mbox{ } \mathrm{d}N_i(t; \beta) \\
 &
 \end{align*}
 </span>
@@ -803,13 +835,13 @@ I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{ \sum_{j=1}^nI(\log T_j - \bet
   <li class = "lightblue">Computational Challenges</li>
       <ul class="tight">
         <li>
-            <font class="white">$\Psi_n(\beta)$</font> is neither continuous nor monotone
+            <font class="white"><span class = "number">$\Psi_n(\beta)$</span></font> is neither continuous nor monotone
         </li>
 	 <li>
-         Continuous approximations to <font class="white">$\Psi_n(\beta)$</font>
+         Continuous approximations to <font class="white"><span class = "number">$\Psi_n(\beta)$</span></font>
      </li>
 	 <li>
-         To ensure monotonicity, let <font class="white">$\rho(t, \beta) = \frac{1}{n}\sum_{j=1}^n I(\epsilon_j^\beta \ge t)$</font>
+         To ensure monotonicity, let <font class="white"><span class = "number">$\rho(t, \beta) = \frac{1}{n}\sum_{j=1}^n I(\epsilon_j^\beta \ge t)$</span></font>
      </li>
       </ul>
 </ul>
@@ -940,13 +972,13 @@ I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{ \sum_{j=1}^nI(\log T_j - \bet
 
 <span class="equation">
 \begin{align*}
-\Psi_n^{IV}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+\Psi_n^{IV}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t; \beta) \\
 & \\
  \mbox{where } {\color{Yellow}\overline{Z}(t, \beta)} &\equiv
 \frac{1}{n}\sum_{j=1}^n {\color{Yellow}Z_j} I(\epsilon_i^\beta \ge t) \mbox{ } / \mbox{ } \frac{1}{n}\sum_{i=1}^n I(\epsilon_i^\beta \ge t) \mbox{  and} \\
 & \\
 \epsilon_i^\beta &= \log{T_i} - \beta {\color{Yellow}X_i} \mbox{ is the residual for subject }i \mbox{ and }
-N_i(t, \beta) = I(\epsilon_i^\beta \leq t, \Delta_i = 1)
+N_i(t; \beta) = I(\epsilon_i^\beta \leq t, \Delta_i = 1)
 \end{align*}
 </span>
 
@@ -990,7 +1022,7 @@ U_n^{2SLS}(\beta) = \sum_{i = 1}^n \rho(t, \beta)\left\{ {\color{Yellow}\hat{X}_
 
 <span class="equation">
 \begin{align*}
-\Psi_n^{IV}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+\Psi_n^{IV}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t; \beta) \\
 & \mbox{ } \\
 \epsilon_i^\beta &= \log{T_i} - \beta {\color{Yellow}X_i} \mbox{ depends on } {\color{Yellow} C_i}
 \end{align*}
@@ -1035,13 +1067,13 @@ the mean IV value for those in the risk set for <font class="white">$i$</font> <
 
 <span class="equation">
 \begin{align*}
-\Psi_n^{2SLS}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}\hat{X}_i} - {\color{Yellow}{\tilde{X}}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t, \beta) \\
+\Psi_n^{2SLS}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}\hat{X}_i} - {\color{Yellow}{\tilde{X}}(t, \beta)} \} \mbox{ } \mathrm{d}N_i(t; \beta) \\
 & \\
  \mbox{where } {\color{Yellow}{\tilde{X}}(t, \beta)} &\equiv
 \frac{1}{n}\sum_{j=1}^n {\color{Yellow}\hat{X}_j} I({\color{Yellow}\hat{\epsilon}_i^\beta} \ge t) \mbox{ } / \mbox{ } \frac{1}{n}\sum_{i=1}^n I(  {\color{Yellow}\hat{\epsilon}_i^\beta} \ge t) \mbox{  and} \\
 & \\
 {\color{Yellow}\hat{\epsilon}_i^\beta} &= \log{T_i} - \beta {\color{Yellow}\hat{X}_i} \mbox{ is the residual for subject }i \mbox{ and }
-N_i(t, \beta) = I({\color{Yellow}\hat{\epsilon}_i^\beta} \leq t, \Delta_i = 1)
+N_i(t; \beta) = I({\color{Yellow}\hat{\epsilon}_i^\beta} \leq t, \Delta_i = 1)
 \end{align*}
 </span>
 
@@ -1090,7 +1122,7 @@ U_n(\beta ) = \sum_{i=1}^n \rho(t, \beta) \left\{ Z_i -
 
 <span class="equation">
 \begin{align*}
-\Psi_n^{IV-IPCW}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}_{\hat{G}_C}(t, \beta)} \} \frac{\mathrm{d}N_i(t, \beta)}{\hat{G}_C(t + \beta X_i)} \\
+\Psi_n^{IV-IPCW}(\beta) &= \sum_{i = 1}^n\int \rho(t, \beta)\{ {\color{Yellow}Z_i} - {\color{Yellow}\overline{Z}_{\hat{G}_C}(t, \beta)} \} \frac{\mathrm{d}N_i(t; \beta)}{\hat{G}_C(t + \beta X_i)} \\
 & \\
  \mbox{where } {\color{Yellow}\overline{Z}_{\hat{G}_C}(t, \beta)} &\equiv
 \frac{1}{n}\sum_{j=1}^n \frac{{\color{Yellow}Z_j} I({\color{Yellow}\epsilon_i^\beta} \ge t)}{\hat{G}_C(t + \beta X_j)} \mbox{ } / \mbox{ }
@@ -1098,7 +1130,7 @@ U_n(\beta ) = \sum_{i=1}^n \rho(t, \beta) \left\{ Z_i -
 & \\
 {\color{Yellow}\epsilon_i^\beta} &= \log{T_i} - \beta {\color{Yellow}X_i} \mbox{ is the residual for subject }i \\
 \mbox{ and }
-N_i(t, \beta) &= I({\color{Yellow}\epsilon_i^\beta} \leq t, \Delta_i = 1)\\
+N_i(t; \beta) &= I({\color{Yellow}\epsilon_i^\beta} \leq t, \Delta_i = 1)\\
 \mbox{and } \hat{G}_C & \mbox{ is the Kaplan-Meier estimator of } G_C\mbox{, the survival function of } C
 \end{align*}
 </span>
@@ -1120,17 +1152,17 @@ N_i(t, \beta) &= I({\color{Yellow}\epsilon_i^\beta} \leq t, \Delta_i = 1)\\
 <ul class = "tight">
 <br>
 <span class="equationcenter" style="font-style: italic;font-size: 3.7vmin;"> <font style ="font-style: normal;font-size: 5vmin;" class = "lightblue"> Theorem 1 &nbsp;&nbsp;&nbsp;</font>
-Assume regularity conditions hold and ${\rho}_n(t, \beta)$ and $\overline{Z}_{\hat{G}_C}(t, \beta)$ in $\Psi_n^{IV-IPCW}(\beta)$ belong  to Glivenko-Cantelli classes. Then an approximate root $\hat{\beta}_n$ satisfying
+Assume regularity conditions hold and <span class = "number">${\rho}_n(t, \beta)$ and $\overline{Z}_{\hat{G}_C}(t, \beta)$</span> in <span class = "number">$\Psi_n^{IV-IPCW}(\beta)$</span> belong  to Glivenko-Cantelli classes. Then an approximate root <span class = "number">$\hat{\beta}_n$</span> satisfying
 
 <br>
-    <span class="equationcenter" style="font-size: 4vmin;">
+    <span class="equationcenter number" style="font-size: 4vmin;">
     \begin{align*}
     \Psi_n^{IV-IPCW}({\hat{\beta}_n}) = o_{p*}(1)
     \end{align*}
     </span>
 <br>
 
-is consistent. In particular when ${\rho}_{\hat{G}_C, n}(t,\beta) = \frac{1}{n}\sum_{i=1}^n \frac{I(  {\epsilon_i^\beta} \ge t)}{\hat{G}_C(t + \beta X_j)}$ for the Gehan type  of weight, the resulting estimator is consistent.
+is consistent. In particular when <span class = "number">${\rho}_{\hat{G}_C, n}(t,\beta) = \frac{1}{n}\sum_{i=1}^n \frac{I(  {\epsilon_i^\beta} \ge t)}{\hat{G}_C(t + \beta X_j)}$</span> for the Gehan type  of weight, the resulting estimator is consistent.
 </span>
 
 </ul>
@@ -1147,27 +1179,26 @@ is consistent. In particular when ${\rho}_{\hat{G}_C, n}(t,\beta) = \frac{1}{n}\
 <ul class = "tight">
 <br>
 <span class="equationcenter" style="font-style: italic;font-size: 3.7vmin;"> <font style ="font-style: normal;font-size: 5vmin;" class = "lightblue"> Theorem 2 &nbsp;&nbsp;&nbsp;</font>
-    Denote $\hat{\gamma}_n = \hat{G}_C^{-1} \mbox{, } \gamma_0 = G_C^{-1}$ and let $\hat{\beta}_n$  be an approximate root satisfying
+    Denote <span class = "number">$\hat{\gamma}_n = \hat{G}_C^{-1} \mbox{, } \gamma_0 = G_C^{-1}$</span> and let <span class = "number">$\hat{\beta}_n$</span>  be an approximate root satisfying
 
 <br>
-    <span class="equationcenter" style="font-size: 4vmin;">
+    <span class="equationcenter number" style="font-size: 4vmin;">
     \begin{align*}
     \Psi_{\hat{\gamma}_n, n}^{IV-IPCW}(\hat{\beta}_n) = o_{p^*}(n^{-1/2}).
     \end{align*}
     </span>
-<br>
 
-    Then under the regularity conditions,  $n^{1/2}(\hat{\beta}_n - \beta_0)$ is asymptotically normal with the asymptotic representation
+    Then under the regularity conditions, <span class = "number">$n^{1/2}(\hat{\beta}_n - \beta_0)$</span> is asymptotically normal with the asymptotic representation
 
 <br>
-    <span class="equationcenter" style="font-size: 4vmin;">
+    <span class="equationcenter number" style="font-size: 4vmin;">
     \begin{align*}
      n^{1/2}( \hat{\beta}_n - \beta_0 ) =  n^{1/2}( \widetilde{\beta}_n - \beta_0 ) - \{  \dot{\Psi}_\beta (\beta_0)  \}^{-1} \dot{\Psi}_{\gamma} ( n^{1/2} (\hat{\gamma}_n - \gamma_0)  )  + o_{p^*}(1)
     \end{align*}
     </span>
 
-    where $\widetilde{\beta}_n$  is an approximate root satisfying
-    <span class="equationcenter" style="font-size: 4vmin;">
+    where <span class = "number">$\widetilde{\beta}_n$</span>  is an approximate root satisfying
+    <span class="equationcenter number" style="font-size: 4vmin;">
     \begin{align*}
     \Psi_{\gamma_0, n}^{IV-IPCW}(\widetilde{\beta}_n) = o_{p^*}(n^{-1/2}).
     \end{align*}
@@ -1387,10 +1418,10 @@ is consistent. In particular when ${\rho}_{\hat{G}_C, n}(t,\beta) = \frac{1}{n}\
 <h3>AFT-IV-IPCW <font class="white">-</font> Inference</h3>
 
 
-<ul class="nodash tight lightblue">
+<ul class="nodash tight lightblue" style="font-size: 3.5vmin">
   <li class="lightblue">From Theorem 2 we have</li>
 
-<span class="equation">
+<span class="equation" style="font-size: 3.75vmin">
 \begin{align*}
 n^{-1/2}\Psi_n^{IV-IPCW}(\beta) = {} &  \dot{\Psi}_{\gamma} ( n^{1/2} (\hat{\gamma}_n - \gamma_0)  ) + n^{-1/2}\sum_{i=1}^nS_i(\beta_0) \\
  &{} +
@@ -1416,9 +1447,9 @@ n^{-1/2}\Psi_n^{IV-IPCW}(\beta) = {} &  \dot{\Psi}_{\gamma} ( n^{1/2} (\hat{\gam
 
 
 <section class = "slide nobottomspace">
-<h3 class = "medmargin" >Simulation &nbsp; <font class = "white fontmed"> $T = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font>
+<h3 class = "medmargin" >Simulation &nbsp; <span class = "number"><font class = "white fontmed"> $\widetilde{T} = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font></span>
 <font class = "fontmed">  where </font>
-<font class = "white fontmed"> $X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</font> <font class = "fontmed">  and  </font>
+<font class = "white fontmed"> <span class = "number">$X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</span></font> <font class = "fontmed">  and  </font>
 <font class = "white fontmed"> $\epsilon$, $\epsilon^* \sim N(0,1)$, $\epsilon \perp\!\!\!\perp \epsilon^*$ </font> </h3>
 
 <!--
@@ -1472,14 +1503,16 @@ U_n(\beta ) = \sum_{i=1}^n
 </div>
 
 
-<script type="text/javascript" src="d3_viz/kdepresent_exp.js"></script>
+<script type="text/javascript" src="densities/kdepresent_exp.js"></script>
 </section>
 
 <!-- ######################################################################################################################################## -->
 
 
 <section class = "slide nobottomspace">
-<h3>Simulation <font class="white">-</font> Coverage</h3>
+<h3>Coverage  &nbsp; <span class = "number"><font class = "white fontmed"> $\widetilde{T} = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font></span>
+<font class = "fontmed">  where </font>
+<font class = "white fontmed"> <span class = "number">$X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</span></font></h3>
 
 
 <img class="img65" src="figures/coverage_plot_sim.png" >
@@ -1490,7 +1523,9 @@ U_n(\beta ) = \sum_{i=1}^n
 <!-- #################################   ZOOMED VERSION   ######################################## -->
 
 <section class = "slide nobottomspace">
-<h3>Simulation <font class="white">-</font> Coverage</h3>
+<h3>Coverage (Zooming In)  &nbsp; <span class = "number"><font class = "white fontmed"> $\widetilde{T} = \exp{\{ \beta X + \beta_U U + \epsilon \}}$ </font></span>
+<font class = "fontmed">  where </font>
+<font class = "white fontmed"> <span class = "number">$X = \alpha_Z \exp{\{Z\}} + \alpha_U U + \epsilon^* $</span></font></h3>
 
 
 <img class="img65" src="figures/coverage_plot_sim_zoom.png" >

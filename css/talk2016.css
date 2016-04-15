@@ -739,6 +739,8 @@ path.line {
 }
 
 
+.number { word-spacing: -0.07em; white-space: nowrap; }
+
 .equationlarge {
  color: white;
  padding: 0.25vmin 0.25vmin;

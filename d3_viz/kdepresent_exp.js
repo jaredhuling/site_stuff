@@ -135,7 +135,7 @@ var betaTruth = vis.selectAll('path.median.x')
 
 var myDensityLines = [];
 
-d3.csv("d3_viz/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
+d3.csv("densities/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
 
   estimators = d3.set(input.map(function(x) {return x.estimator})).values();
   values_corux = d3.set(input.map(function(x) {return x.EFFUX})).values();
@@ -154,7 +154,7 @@ d3.csv("d3_viz/data/sim_exp_500_9_16_15_for_d3.csv", function(input) {
   var real_coris = d3.round(_.toArray(data_filtered.filter(Compare(estimators[0], 'estimator'))[0])[3], 4);
   d3.select("#sliderCORIStext").text(real_coris);
   var kdes = [];
-  var colours = ["#00CC00", "#6C91FF", "#D1E0E0", "#E60000"];
+  var colours = ["#E60000", "#6C91FF", "#D1E0E0", "#00CC00"];
 
   var line = d3.svg.line()
       .x(function(d) { return scalex(d[0]); })
@@ -574,14 +574,3 @@ var betaTruth = vis.selectAll('path.median.x')
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
