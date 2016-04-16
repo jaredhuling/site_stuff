@@ -484,7 +484,7 @@ var betaTruth = vis.selectAll('path.median.x')
   //var real_coris = d3.round(_.toArray(data_filtered.filter(Compare(estimators[0], 'estimator'))[0])[3], 4);
   //d3.select("#sliderCORIStext").text(real_coris);
   var kdes = [];
-  var colours = ["#00CC00", "#6C91FF", "#D1E0E0", "#E60000"];
+  var colours = ["#E60000", "#6C91FF", "#D1E0E0", "#00CC00"];
 
   var line = d3.svg.line()
       .x(function(d) { return scalex(d[0]); })
