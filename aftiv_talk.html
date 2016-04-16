@@ -319,7 +319,7 @@ class="gray">www.stat.wisc.edu/~huling</a></code><br/>
 <!--<ul class="tight lightblue" id = "contentcontainer">-->
   <img class="img50" src="figures/iv_assumptions.png" >
 
-<p class="white indent" id = "textalign">Consider the model <span class = "number">$T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$</span>.
+<p class="white indent" id = "textalign">Consider the model <span class = "number">$T = \beta X + U, \mbox{ where } U = (V, \epsilon)$</span>.
 <br><br>
 so <span class = "number">$\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^TU$</span> is biased because <span class = "number"><font class = "greenhighlight">$E(X^TU) \neq 0$</font></span>
 </p>
@@ -369,7 +369,7 @@ so <span class = "number">$\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^TU$</span> i
 <!--<ul class="tight lightblue" id = "contentcontainer">-->
   <img class="img50" src="figures/iv_assumptions.png" >
 
-<p class="white indent" id = "textalign">Consider the model <span class = "number">$T = X^T\beta + U, \mbox{ where } U = (V, \epsilon)$</span>.
+<p class="white indent" id = "textalign">Consider the model <span class = "number">$T = \beta X + U, \mbox{ where } U = (V, \epsilon)$</span>.
 <br><br>
 so <span class = "number">$\hat{\beta}_{OLS} = \beta + (X^TX)^{-1}X^TU$</span> is biased because <span class = "number"><font class = "glow">$E(X^TU) \neq 0$</font></span>
 </p>
@@ -811,8 +811,8 @@ N_i(t; \beta) &= I(\epsilon_i^\beta \leq t, \Delta_i = 1)
 \end{align*}
 </span>
 
-<p class="highlight indent"><font class="white"><span class = "number">$\hat{\beta}$</span></font> is the zero crossing of <font class="white"><span class = "number">$S_n(\beta)$</span></font>.
-Its asymptotic normality was proved by <font class="white">Tsiatis (1990)</font> and <font class="white">Ying (1993)</font></p>
+<p class="lightblue indent"><font class="white"><span class = "number">$\hat{\beta}$</span></font> is the zero crossing of <font class="white"><span class = "number">$\Psi_n(\beta)$</span></font>.
+Its asymptotic normality was proved by <font class="greenhighlight">Tsiatis (1990)</font> and <font class="greenhighlight">Ying (1993)</font></p>
 
 
 <!--
@@ -927,8 +927,6 @@ I(\log T_j - \beta X_j \ge \log T_i - \beta X_i)}{ \sum_{j=1}^nI(\log T_j - \bet
 
 <section class = "slide nobottomspace">
 <h3>Assumptions for IVs in the Accelerated Failure Time Model</h3>
-
-<p class="indent lightblue"> Assumptions for our methodology </p>
 
 <div style = "margin: 0px;" id = "contentcontainer">
 <ul class="tight lightblue" id = "contentcontainer">
@@ -1096,7 +1094,7 @@ U_n^{2SLS}(\beta) &= \sum_{i = 1}^n \rho(t, \beta)\left\{ {\color{Yellow}\hat{X}
 { \sum_{j=1}^nI(\log T_j - \beta {\color{Yellow}\hat{X}_j} \ge \log T_i - \beta {\color{Yellow}\hat{X}_i})} \right\} \Delta_i
 -->
 
-<p class="slide nobottomspace lightblue indent"> However this still imposes a linear model <br><br>
+<p class="slide nobottomspace lightblue indent"> However this still imposes a linear <br><br>
 assumption on the effect of the IV on <font class="white">$X$</font></h4>
 
 
@@ -1308,7 +1306,7 @@ is consistent. In particular when <span class = "number">${\rho}_{\hat{G}_C, n}(
 
 
 <section class = "slide nobottomspace">
-<h3>Methods for Unmeasured Confounders <font class="white">-</font> Inference</h3>
+<h3>Inference for IV Estimation in the AFT Model</h3>
 
 
 <ul class="nodash tight lightblue">
@@ -1429,7 +1427,7 @@ is consistent. In particular when <span class = "number">${\rho}_{\hat{G}_C, n}(
 
 
 <section class = "slide nobottomspace">
-<h3>AFT-IV-IPCW <font class="white">-</font> Inference</h3>
+<h3>Inference for IV Estimation in the AFT Model</h3>
 
 
 <ul class="nodash tight lightblue" style="font-size: 3.5vmin">
@@ -2429,13 +2427,10 @@ U_n(\beta ) = \sum_{i=1}^n
   <li>Methods</li>
        <ul class="lightblue">
          <li>
-             Standard AFT model, AFT model with IV replacement, AFT-2SLS
+             Standard AFT model, AFT model with IV replacement, AFT-2SLS, AFT-IV-IPCW
          </li>
          <li>
              Bootstrap for confidence intervals
-         </li>
-    	 <li>
-             Due to time considerations AFT model with IV and inverse weighting was not used
          </li>
        </ul>
 
@@ -2536,7 +2531,7 @@ U_n(\beta ) = \sum_{i=1}^n
           Standard AFT model (no IV adjustment) suggests slight benefit from endo
       </li>
 	  <li>
-          AFT-IV / 2SLS models suggest potential benefit from open surgery
+          AFT-IV / 2SLS /IPCW models suggest potential benefit from open surgery
       </li>
       <li>
           Interactions between the surgery type and patient characteristics
@@ -2544,7 +2539,7 @@ U_n(\beta ) = \sum_{i=1}^n
 	</ul>
 
   <li class="lightblue">
-      Estimators
+      IV Estimation in the AFT model
   </li><br>
 	<ul >
 	  <li>Standard AFT model exhibits clear bias in the presence of confounding
